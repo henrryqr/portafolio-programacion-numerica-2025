@@ -1,48 +1,67 @@
-/* Estilo general */
+/* General */
 body {
   font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  color: #f1f5f9;
   margin: 0;
   padding: 0;
-  animation: fadeIn 1s ease-in;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb); /* degradado azul oscuro */
+  color: #f1f5f9;
 }
 
+/* Encabezado */
 header {
   text-align: center;
   padding: 2rem;
-  background: #1e293b;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-  animation: slideDown 1s ease;
+  background: rgba(30, 58, 138, 0.85); /* azul semitransparente */
+  color: white;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
 }
 
-h1 {
+header h1 {
   margin: 0;
-  font-size: 2.2rem;
+  font-size: 2.4rem;
+  letter-spacing: 1px;
 }
 
-.sobre, .actividades {
+.autores {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: #eef1f3; /* amarillo para resaltar */
+}
+
+/* Secciones */
+section {
   padding: 2rem;
-  text-align: center;
+  margin: 2rem auto;
+  max-width: 950px;
+  background: rgba(255, 255, 255, 0.08); /* transparente con efecto cristal */
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
 }
 
-/* Tags */
+section h2 {
+  margin-bottom: 1rem;
+  color: #facc15; /* amarillo brillante */
+  border-bottom: 3px solid #facc15;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+/* Etiquetas */
 .tags span {
   display: inline-block;
-  background: #334155;
-  padding: 6px 12px;
+  background: rgba(37, 99, 235, 0.85);
+  color: white;
+  padding: 6px 14px;
   margin: 5px;
   border-radius: 20px;
   font-size: 0.9rem;
-  transition: transform 0.3s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
-.tags span:hover {
-  transform: scale(1.1);
-  background: #2563eb;
-}
-
-/* Tarjetas */
+/* Actividades */
 .cards {
   display: flex;
   justify-content: center;
@@ -52,19 +71,18 @@ h1 {
 }
 
 .card {
-  background: #0f172a;
-  border-radius: 15px;
+  background: rgba(15, 23, 42, 0.7); /* azul oscuro transparente */
+  border-radius: 14px;
   padding: 1.5rem;
-  width: 250px;
+  width: 260px;
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.5);
   transition: transform 0.3s, box-shadow 0.3s;
-  animation: fadeInUp 1s ease forwards;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.7);
 }
 
 .card a {
@@ -72,39 +90,27 @@ h1 {
   margin-top: 1rem;
   text-decoration: none;
   color: white;
-  background: #2563eb;
-  padding: 8px 12px;
+  background: #16a34a; /* verde */
+  padding: 8px 14px;
   border-radius: 8px;
   transition: background 0.3s;
 }
 
 .card a:hover {
-  background: #1e40af;
+  background: #22c55e;
 }
 
 /* Footer */
 footer {
   text-align: center;
-  padding: 1rem;
-  background: #1e293b;
+  padding: 1.5rem;
+  background: rgba(30, 58, 138, 0.85);
+  color: white;
   margin-top: 2rem;
+  backdrop-filter: blur(6px);
 }
-
-/* Animaciones */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideDown {
-  from { transform: translateY(-50px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes fadeInUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-.highlight {
-  box-shadow: 0 0 20px #38bdf8, 0 0 40px #0ea5e9;
+section, .card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
 }

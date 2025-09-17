@@ -1,4 +1,4 @@
-// --- Animación suave de entrada ---
+
 document.addEventListener("DOMContentLoaded", () => {
   const secciones = document.querySelectorAll("section, .card");
 

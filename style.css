@@ -1,0 +1,110 @@
+/* Estilo general */
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #f1f5f9;
+  margin: 0;
+  padding: 0;
+  animation: fadeIn 1s ease-in;
+}
+
+header {
+  text-align: center;
+  padding: 2rem;
+  background: #1e293b;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  animation: slideDown 1s ease;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.sobre, .actividades {
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Tags */
+.tags span {
+  display: inline-block;
+  background: #334155;
+  padding: 6px 12px;
+  margin: 5px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: transform 0.3s;
+}
+
+.tags span:hover {
+  transform: scale(1.1);
+  background: #2563eb;
+}
+
+/* Tarjetas */
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.card {
+  background: #0f172a;
+  border-radius: 15px;
+  padding: 1.5rem;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 1rem;
+  text-decoration: none;
+  color: white;
+  background: #2563eb;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.card a:hover {
+  background: #1e40af;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #1e293b;
+  margin-top: 2rem;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.highlight {
+  box-shadow: 0 0 20px #38bdf8, 0 0 40px #0ea5e9;
+}

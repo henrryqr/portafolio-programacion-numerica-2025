@@ -1,99 +1,165 @@
-/* 🎨 Estilo general */
-* {
+/* General */
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top left, #1d1f33, #0d0f1a);
+  color: #fff;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body {
-  background: linear-gradient(135deg, #2c3e50, #34495e);
-  color: #f5f5f5;
-  line-height: 1.6;
-}
-
-/* Encabezado */
+/* ENCABEZADO */
 .header {
-  background: #1abc9c;
-  color: white;
-  text-align: center;
-  padding: 2rem 1rem;
+  padding: 2rem;
+  text-align: left;
 }
-
 .header h1 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
+  color: #a78bfa;
 }
-
-.header h2 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  margin-top: 0.5rem;
+.header h1 span {
+  color: #8b5cf6;
 }
-
-/* Contenedor */
-.container {
-  width: 90%;
-  max-width: 1000px;
-  margin: 2rem auto;
+.header p {
+  font-size: 1rem;
+  color: #d6d9f5;
 }
-
-/* Secciones */
-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  border-left: 5px solid #1abc9c;
-  padding-left: 10px;
-}
-
-/* Etiquetas */
-.tags {
+.progress-bar {
+  height: 6px;
+  background: #00c2ff;
+  border-radius: 4px;
   margin-top: 1rem;
+  width: 70%;
+}
+.stats {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+.stat {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  text-align: center;
+  flex: 1;
+}
+.stat h2 {
+  font-size: 1.5rem;
+  color: #36f1cd;
+  margin: 0;
+}
+.stat p {
+  font-size: 0.9rem;
+  color: #d6d9f5;
+}
+
+/* SOBRE EL PORTAFOLIO */
+.sobre {
+  padding: 2rem;
+}
+.sobre h2 {
+  color: #ff4fd8;
+  margin-bottom: 1.5rem;
+}
+.sobre-cards {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.sobre-card {
+  background: linear-gradient(160deg, #222846, #191d34);
+  border-radius: 16px;
+  padding: 1.5rem;
+  flex: 1;
+  min-width: 250px;
+}
+
+/* ACTIVIDADES */
+.actividades {
+  padding: 2rem;
+}
+.actividades h2 {
+  font-size: 2rem;
+  color: #ff4fd8;
+  margin-bottom: 1.5rem;
+}
+.cards {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card {
+  background: linear-gradient(160deg, #222846, #191d34);
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: 300px;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  transition: transform 0.2s ease-in-out;
+}
+.card:hover {
+  transform: translateY(-8px);
+}
+.card.destacado {
+  border: 2px solid #ff4fd8;
+}
+.badge {
+  background: #00c2ff;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 0.3rem 0.7rem;
+  border-radius: 12px;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.card h3 {
+  color: #a78bfa;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+.card p {
+  font-size: 0.9rem;
+  line-height: 1.4rem;
+  margin: 1rem 0;
+  color: #d6d9f5;
+}
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
 }
 .tags span {
-  display: inline-block;
-  background: #16a085;
-  padding: 5px 10px;
-  border-radius: 15px;
-  margin: 3px;
-  font-size: 0.9rem;
+  background: rgba(255,255,255,0.1);
+  padding: 0.3rem 0.7rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  color: #fff;
 }
-
-/* Cards */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
+.buttons {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
 }
-
-.card {
-  background: #2c3e50;
-  padding: 1.5rem;
-  border-radius: 12px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
-}
-
-.card h3 {
-  margin-bottom: 0.5rem;
-  color: #1abc9c;
-}
-
-.card a {
-  display: inline-block;
-  margin-top: 10px;
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
   text-decoration: none;
-  color: #1abc9c;
   font-weight: bold;
+  transition: all 0.2s;
 }
-
-/* Footer */
-footer {
-  text-align: center;
-  background: #1abc9c;
-  padding: 1rem;
-  margin-top: 2rem;
+.btn.repo {
+  background: linear-gradient(90deg, #6366f1, #a78bfa);
+  color: white;
+}
+.btn.informe {
+  background: linear-gradient(90deg, #00c2ff, #36f1cd);
+  color: black;
+}
+.btn:hover {
+  opacity: 0.85;
 }

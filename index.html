@@ -3,65 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portafolio – Programación Numérica</title>
+  <title>Portafolio - Programación Numérica</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- Encabezado -->
   <header class="header">
-    <div class="container">
-      <h1>Henrry Higinio Quispe Ramos</h1>
-      <h2>Curso: Programación Numérica</h2>
-      <p>Docente: [Nombre del docente]</p>
+    <div class="header-content">
+      <h1>Portafolio - <span>Programación Numérica</span></h1>
+      <p>FINESI • Universidad Nacional del Altiplano - Puno • Semestre 2025</p>
+      <div class="progress-bar"></div>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <h2>3</h2>
+        <p>Actividades registradas</p>
+      </div>
+      <div class="stat">
+        <h2>100%</h2>
+        <p>Entregables propios</p>
+      </div>
+      <div class="stat">
+        <h2>FINESI</h2>
+        <p>UNA Puno</p>
+      </div>
     </div>
   </header>
 
-  <!-- Sección Sobre -->
-  <section class="sobre container">
-    <h2>📖 Sobre este portafolio</h2>
-    <p>
-      Este portafolio contiene mis actividades, proyectos y evidencias del curso de
-      <b>Programación Numérica</b>, semestre 2025-I en la Universidad Nacional del Altiplano.
-    </p>
-    <div class="tags">
-      <span>2025-I</span>
-      <span>Métodos Numéricos</span>
-      <span>Python</span>
-      <span>C++</span>
+  <!-- Sobre este portafolio -->
+  <section class="sobre">
+    <h2>Sobre este portafolio</h2>
+    <div class="sobre-cards">
+      <div class="sobre-card">
+        <h3>📚 Curso</h3>
+        <p>
+          Espacio para documentar mis actividades, tareas y proyectos del curso
+          <b>Programación Numérica</b>. Cada entrada incluye resumen,
+          evidencias y enlaces a código o informes.
+        </p>
+      </div>
+      <div class="sobre-card">
+        <h3>🛠️ Tecnologías</h3>
+        <p>
+          <b>2025-I</b> • Métodos Numéricos • <b>C/C++</b> • <b>Python</b> •
+          <b>Excel</b>
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- Sección Actividades -->
-  <section class="actividades container">
-    <h2>📝 Actividades del curso</h2>
+  <!-- Actividades -->
+  <section class="actividades">
+    <h2>Actividades del curso</h2>
     <div class="cards">
+
+      <!-- Card 1 -->
       <div class="card">
-        <h3>Actividad 01</h3>
-        <p>Error y Aritmética de Punto Flotante</p>
-        <small>10/03/2025 · Semana 1</small>
-        <a href="#">📂 Ver repositorio</a>
+        <span class="badge">Semana 1 • 10/03/2025</span>
+        <h3>Actividad 01 • Error y Aritmética de Punto Flotante</h3>
+        <p>
+          Ejercicios de redondeo, error absoluto/relativo y estabilidad
+          numérica. Análisis profundo de la representación de números en punto
+          flotante y sus implicaciones en cálculos computacionales.
+        </p>
+        <div class="tags">
+          <span>Python</span><span>Teoría</span><span>Análisis Numérico</span>
+        </div>
+        <div class="buttons">
+          <a href="#" class="btn repo">📂 Ver repositorio</a>
+          <a href="#" class="btn informe">📄 Informe</a>
+        </div>
       </div>
 
+      <!-- Card 2 -->
       <div class="card">
-        <h3>Actividad 02</h3>
-        <p>Raíces: Bisección y Newton-Raphson</p>
-        <small>17/03/2025 · Semana 2</small>
-        <a href="#">📂 Código fuente</a>
+        <span class="badge">Semana 2 • 17/03/2025</span>
+        <h3>Actividad 02 • Raíces: Bisección y Newton-Raphson</h3>
+        <p>
+          Implementación comparativa de métodos de búsqueda de raíces. Análisis
+          de convergencia, criterios de paro y casos de prueba con funciones
+          complejas y múltiples raíces.
+        </p>
+        <div class="tags">
+          <span>C++</span><span>Métodos de raíces</span><span>Convergencia</span>
+        </div>
+        <div class="buttons">
+          <a href="#" class="btn repo">💻 Código fuente</a>
+          <a href="#" class="btn informe">📊 Resultados</a>
+        </div>
       </div>
 
-      <div class="card">
-        <h3>Proyecto</h3>
-        <p>Interpolación y Ajuste</p>
-        <small>07/04/2025 · Semana 5</small>
-        <a href="#">📂 Informe final</a>
+      <!-- Card Proyecto Final -->
+      <div class="card destacado">
+        <span class="badge">Semana 5 • 07/04/2025</span>
+        <h3>🚀 Proyecto Final • Interpolación y Ajuste</h3>
+        <p>
+          Interpolación de Newton y spline cúbico; ajuste de mínimos cuadrados
+          aplicado a datos experimentales. Incluye comparación de métodos y
+          análisis de error.
+        </p>
+        <div class="tags">
+          <span>Python</span><span>Interpolación</span><span>Proyecto Final</span>
+        </div>
+        <div class="buttons">
+          <a href="#" class="btn repo">📂 Repositorio</a>
+          <a href="#" class="btn informe">📑 Informe Final</a>
+        </div>
       </div>
+
     </div>
   </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 – Portafolio académico de Henrry Higinio Quispe Ramos | Universidad Nacional del Altiplano</p>
-  </footer>
 
   <script src="script.js"></script>
 </body>

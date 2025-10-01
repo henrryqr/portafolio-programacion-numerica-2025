@@ -1,6 +1,6 @@
 // Esperar a que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Repositorio GitHub - Programación Numérica (Neon) cargado');
+    console.log('Repositorio GitHub - Programación Numérica cargado');
     
     // Header scroll effect
     const header = document.querySelector('.header');
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Animaciones al hacer scroll
     const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.assignment-card, .feature, .objectives-list li, .info-item, .link-item');
+        const elements = document.querySelectorAll('.assignment-card, .feature, .objectives-list li, .data-item, .detail-item, .resource-link');
         
         elements.forEach(element => {
             const elementTop = element.getBoundingClientRect().top;
@@ -77,16 +77,14 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
 
-    // Efectos de hover mejorados para tarjetas con glow
-    document.querySelectorAll('.assignment-card, .feature, .info-card, .course-card, .links-card').forEach(card => {
+    // Efectos de hover mejorados para tarjetas
+    document.querySelectorAll('.assignment-card, .feature, .info-card, .resource-link').forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-5px)';
-            this.style.boxShadow = '0 0 20px rgba(139, 92, 246, 0.5), 0 0 40px rgba(139, 92, 246, 0.3)';
         });
         
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0)';
-            this.style.boxShadow = '0 0 20px rgba(139, 92, 246, 0.3)';
         });
     });
 
@@ -153,10 +151,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Iniciar efecto de escritura después de un delay
     setTimeout(typeCodeEffect, 1000);
 
-    // Sistema de notificaciones neon para GitHub
-    function showNeonNotification(message) {
+    // Sistema de notificaciones para GitHub
+    function showGitHubNotification(message) {
         const notification = document.createElement('div');
-        notification.className = 'neon-notification';
+        notification.className = 'github-notification';
         notification.innerHTML = `
             <div class="notification-content">
                 <i class="fab fa-github"></i>
@@ -193,11 +191,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Simular clics en enlaces de GitHub (para demostración)
-    document.querySelectorAll('.btn-assignment').forEach(button => {
+    document.querySelectorAll('.btn-assignment, .resource-link').forEach(button => {
         button.addEventListener('click', function(e) {
             if (this.getAttribute('href') === '#') {
                 e.preventDefault();
-                showNeonNotification('🔮 Repositorio GitHub - Enlace de demostración');
+                showGitHubNotification('Repositorio GitHub - Enlace de demostración');
             }
         });
     });
@@ -211,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Resaltar sección activa en la navegación con efecto neon
+    // Resaltar sección activa en la navegación
     function highlightActiveSection() {
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
@@ -237,155 +235,77 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', highlightActiveSection);
 
-    // Preloader neon
+    // Preloader simple
     window.addEventListener('load', () => {
         setTimeout(() => {
             document.body.classList.add('loaded');
         }, 1000);
     });
 
-    // Efecto de hover para los enlaces del footer
-    document.querySelectorAll('.footer-section a').forEach(link => {
+    // Efecto de hover para los enlaces de recursos
+    document.querySelectorAll('.resource-link').forEach(link => {
         link.addEventListener('mouseenter', function() {
             this.style.transform = 'translateX(5px)';
-            this.style.textShadow = '0 0 10px #8b5cf6';
         });
         
         link.addEventListener('mouseleave', function() {
             this.style.transform = 'translateX(0)';
-            this.style.textShadow = '0 0 5px #8b5cf6';
         });
     });
 
-    // Efecto de pulso para los iconos neon
-    function addPulseEffect() {
-        const neonIcons = document.querySelectorAll('.neon-icon, .neon-avatar');
-        neonIcons.forEach(icon => {
-            icon.style.animation = 'neonPulse 2s ease-in-out infinite';
+    // Copiar email al portapapeles
+    const emailElement = document.querySelector('.data-content span');
+    if (emailElement && emailElement.textContent.includes('@')) {
+        emailElement.style.cursor = 'pointer';
+        emailElement.title = 'Haz clic para copiar el email';
+        
+        emailElement.addEventListener('click', function() {
+            const email = this.textContent;
+            navigator.clipboard.writeText(email).then(() => {
+                showGitHubNotification('Email copiado al portapapeles: ' + email);
+            });
         });
     }
 
-    // Animación de partículas de fondo
-    function createParticles() {
-        const particlesContainer = document.createElement('div');
-        particlesContainer.className = 'particles-container';
-        document.body.appendChild(particlesContainer);
-
-        for (let i = 0; i < 50; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.cssText = `
-                position: fixed;
-                width: 2px;
-                height: 2px;
-                background: #8b5cf6;
-                border-radius: 50%;
-                pointer-events: none;
-                left: ${Math.random() * 100}%;
-                top: ${Math.random() * 100}%;
-                opacity: ${Math.random() * 0.5};
-                box-shadow: 0 0 10px #8b5cf6;
-            `;
-            particlesContainer.appendChild(particle);
-
-            // Animación flotante
-            animateParticle(particle);
-        }
+    // Efecto de carga escalonada para las tarjetas de información
+    function staggerCardAnimation() {
+        const cards = document.querySelectorAll('.info-card');
+        cards.forEach((card, index) => {
+            setTimeout(() => {
+                card.classList.add('animate-in');
+            }, index * 200);
+        });
     }
 
-    function animateParticle(particle) {
-        let x = parseFloat(particle.style.left);
-        let y = parseFloat(particle.style.top);
-        let vx = (Math.random() - 0.5) * 0.2;
-        let vy = (Math.random() - 0.5) * 0.2;
-
-        function move() {
-            x += vx;
-            y += vy;
-
-            // Rebote en los bordes
-            if (x <= 0 || x >= 100) vx *= -1;
-            if (y <= 0 || y >= 100) vy *= -1;
-
-            particle.style.left = x + '%';
-            particle.style.top = y + '%';
-
-            requestAnimationFrame(move);
-        }
-
-        move();
-    }
-
-    // Efecto de texto typing para el hero
-    function typeWriterText() {
-        const heroTitle = document.querySelector('.hero-title');
-        if (heroTitle) {
-            const text = heroTitle.textContent;
-            heroTitle.textContent = '';
-            let i = 0;
-            
-            function type() {
-                if (i < text.length) {
-                    heroTitle.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(type, 100);
-                }
+    // Iniciar animación escalonada cuando la sección de información es visible
+    const infoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                staggerCardAnimation();
+                infoObserver.unobserve(entry.target);
             }
-            type();
-        }
+        });
+    });
+
+    const infoSection = document.querySelector('#informacion');
+    if (infoSection) {
+        infoObserver.observe(infoSection);
     }
 
-    // Inicializar efectos neon
-    setTimeout(() => {
-        addPulseEffect();
-        createParticles();
-        typeWriterText();
-    }, 1500);
-
-    // Efecto de cursor personalizado
-    function createCustomCursor() {
-        const cursor = document.createElement('div');
-        cursor.className = 'neon-cursor';
-        document.body.appendChild(cursor);
-
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // Efecto al hacer hover en elementos interactivos
-        const interactiveElements = document.querySelectorAll('a, button, .btn-assignment, .assignment-card, .feature');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-            });
-        });
-    }
-
-    // Console log de bienvenida estilo neon
+    // Console log de bienvenida
     console.log(`
-    %c🔮 REPOSITORIO DE PROGRAMACIÓN NUMÉRICA 🔮
-    %c👨‍💻 Estudiante: Henry Higinio Quispe Ramos
-    %c📚 Código: 194926
-    %c🏫 UNAP - Facultad de Ingeniería Estadística e Informática
-    %c📧 Email: hequisper@est.unap.edu.pe
-    %c✨ Estilo: Neon Morado
-    `, 
-    'color: #8b5cf6; font-size: 16px; font-weight: bold; text-shadow: 0 0 10px #8b5cf6;',
-    'color: #a78bfa; font-size: 12px;',
-    'color: #a78bfa; font-size: 12px;',
-    'color: #a78bfa; font-size: 12px;',
-    'color: #a78bfa; font-size: 12px;',
-    'color: #c4b5fd; font-size: 12px; font-style: italic;'
-    );
+    🎓 Repositorio de Programación Numérica
+    👨‍💻 Estudiante: Henry Higinio Quispe Ramos
+    📚 Código: 194926
+    🏫 UNAP - Facultad de Ingeniería Estadística e Informática
+    📧 Email: hequisper@est.unap.edu.pe
+    👨‍🏫 Docente: Ing. Fred Torres Cruz
+    `);
 });
 
-// CSS adicional para efectos neon
+// CSS adicional para las animaciones y efectos
 const additionalCSS = `
-    /* Animaciones Neon */
+    /* Animaciones */
     @keyframes fadeInUp {
         from {
             opacity: 0;
@@ -397,46 +317,260 @@ const additionalCSS = `
         }
     }
     
-    @keyframes neonPulse {
-        0%, 100% {
-            box-shadow: 0 0 5px #8b5cf6, 0 0 10px #8b5cf6;
-        }
-        50% {
-            box-shadow: 0 0 10px #8b5cf6, 0 0 20px #8b5cf6, 0 0 30px #8b5cf6;
-        }
-    }
-    
-    @keyframes textGlow {
-        0%, 100% {
-            text-shadow: 0 0 5px #8b5cf6;
-        }
-        50% {
-            text-shadow: 0 0 10px #8b5cf6, 0 0 20px #8b5cf6;
-        }
-    }
-    
     .animate-in {
         animation: fadeInUp 0.6s ease-out;
     }
     
-    /* Notificaciones Neon */
-    .neon-notification {
+    /* Grid de información mejorado */
+    .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .info-column {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .info-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
+    }
+    
+    .info-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .info-header {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .student-details h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: #1e293b;
+    }
+    
+    .student-role {
+        color: #64748b;
+        font-size: 1rem;
+    }
+    
+    .personal-data {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .data-group h4 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        color: #1e293b;
+        font-weight: 600;
+    }
+    
+    .data-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: #f8fafc;
+        border-radius: 8px;
+        margin-bottom: 0.75rem;
+        transition: all 0.3s ease;
+    }
+    
+    .data-item:hover {
+        background: #f1f5f9;
+        transform: translateX(5px);
+    }
+    
+    .data-icon {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #2563eb, #06b6d4);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1rem;
+        flex-shrink: 0;
+    }
+    
+    .data-content {
+        flex: 1;
+    }
+    
+    .data-content label {
+        display: block;
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-bottom: 0.25rem;
+        font-weight: 500;
+    }
+    
+    .data-content span {
+        display: block;
+        color: #1e293b;
+        font-weight: 600;
+    }
+    
+    .info-card-title {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+        color: #1e293b;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    
+    .info-card-title i {
+        color: #2563eb;
+    }
+    
+    .course-details {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .detail-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: #f8fafc;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .detail-item:hover {
+        background: #f1f5f9;
+        transform: translateX(5px);
+    }
+    
+    .detail-icon {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #2563eb, #06b6d4);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1rem;
+        flex-shrink: 0;
+    }
+    
+    .detail-content label {
+        display: block;
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-bottom: 0.25rem;
+        font-weight: 500;
+    }
+    
+    .detail-content span {
+        display: block;
+        color: #1e293b;
+        font-weight: 600;
+    }
+    
+    .links-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .resource-link {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: #f8fafc;
+        border-radius: 8px;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+    }
+    
+    .resource-link:hover {
+        background: white;
+        border-color: #2563eb;
+        transform: translateX(5px);
+    }
+    
+    .link-icon {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #2563eb, #06b6d4);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+    }
+    
+    .link-content {
+        flex: 1;
+    }
+    
+    .link-title {
+        display: block;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 0.25rem;
+    }
+    
+    .link-desc {
+        display: block;
+        font-size: 0.8rem;
+        color: #64748b;
+    }
+    
+    .link-arrow {
+        color: #64748b;
+        transition: color 0.3s ease;
+    }
+    
+    .resource-link:hover .link-arrow {
+        color: #2563eb;
+    }
+    
+    /* Notificaciones GitHub */
+    .github-notification {
         position: fixed;
         top: 20px;
         right: 20px;
-        background: rgba(17, 17, 17, 0.95);
+        background: white;
         padding: 1rem 1.5rem;
         border-radius: 8px;
-        border: 1px solid #8b5cf6;
-        box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        border-left: 4px solid #2563eb;
         transform: translateX(400px);
         transition: transform 0.3s ease;
         z-index: 3000;
         max-width: 300px;
-        backdrop-filter: blur(10px);
     }
     
-    .neon-notification.show {
+    .github-notification.show {
         transform: translateX(0);
     }
     
@@ -447,14 +581,8 @@ const additionalCSS = `
     }
     
     .notification-content i {
-        color: #8b5cf6;
+        color: #2563eb;
         font-size: 1.2rem;
-        filter: drop-shadow(0 0 5px #8b5cf6);
-    }
-    
-    .notification-content span {
-        color: #ffffff;
-        text-shadow: 0 0 5px #8b5cf6;
     }
     
     .notification-close {
@@ -462,24 +590,18 @@ const additionalCSS = `
         border: none;
         font-size: 1.25rem;
         cursor: pointer;
-        color: #a1a1aa;
+        color: #64748b;
         position: absolute;
         top: 0.5rem;
         right: 0.75rem;
-        transition: color 0.3s ease;
     }
     
-    .notification-close:hover {
-        color: #8b5cf6;
-        text-shadow: 0 0 5px #8b5cf6;
-    }
-    
-    /* Scroll to top button neon */
+    /* Scroll to top button */
     .scroll-top {
         position: fixed;
         bottom: 30px;
         right: 30px;
-        background: #8b5cf6;
+        background: #2563eb;
         color: white;
         width: 50px;
         height: 50px;
@@ -490,31 +612,28 @@ const additionalCSS = `
         justify-content: center;
         align-items: center;
         font-size: 1.25rem;
-        box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
         transition: all 0.3s ease;
         z-index: 1000;
-        animation: neonPulse 2s ease-in-out infinite;
     }
     
     .scroll-top:hover {
-        background: #7c3aed;
+        background: #1d4ed8;
         transform: translateY(-3px);
-        box-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
     }
     
-    /* Navegación activa neon */
+    /* Navegación activa */
     .nav-link.active {
-        color: #8b5cf6;
+        color: #2563eb;
         font-weight: 600;
-        text-shadow: 0 0 10px #8b5cf6;
     }
     
     .nav-link.active::after {
         width: 100%;
-        box-shadow: 0 0 10px #8b5cf6;
     }
     
-    /* Preloader neon */
+    /* Preloader */
     body:not(.loaded) {
         overflow: hidden;
     }
@@ -526,7 +645,7 @@ const additionalCSS = `
         left: 0;
         width: 100%;
         height: 100%;
-        background: #000000;
+        background: #ffffff;
         z-index: 9999;
         display: flex;
         align-items: center;
@@ -534,84 +653,18 @@ const additionalCSS = `
     }
     
     body:not(.loaded)::after {
-        content: '🔮 Cargando Programación Numérica...';
+        content: 'Cargando Programación Numérica...';
         position: fixed;
         top: 60%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 10000;
-        color: #8b5cf6;
+        color: #2563eb;
         font-weight: 600;
         font-size: 1.1rem;
-        text-shadow: 0 0 10px #8b5cf6;
-        animation: textGlow 2s ease-in-out infinite;
     }
     
-    /* Efectos de hover mejorados neon */
-    .assignment-card, .feature, .info-card, .course-card, .links-card {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .btn-assignment {
-        transition: all 0.3s ease;
-        animation: neonPulse 3s ease-in-out infinite;
-    }
-    
-    .btn-assignment:hover {
-        transform: translateX(5px);
-        box-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
-    }
-    
-    .footer-section a {
-        transition: all 0.3s ease;
-    }
-    
-    /* Iconos neon en información */
-    .neon-icon {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #8b5cf6, #a78bfa);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 1.2rem;
-        box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
-        animation: neonPulse 2s ease-in-out infinite;
-    }
-    
-    .neon-link {
-        transition: all 0.3s ease;
-        border: 1px solid transparent;
-    }
-    
-    .neon-link:hover {
-        border-color: #8b5cf6;
-        box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
-        transform: translateX(5px);
-    }
-    
-    /* Cursor personalizado neon */
-    .neon-cursor {
-        position: fixed;
-        width: 20px;
-        height: 20px;
-        background: radial-gradient(circle, #8b5cf6, transparent);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        mix-blend-mode: screen;
-        transition: transform 0.1s ease;
-        box-shadow: 0 0 20px #8b5cf6;
-    }
-    
-    .neon-cursor.hover {
-        transform: scale(1.5);
-        background: radial-gradient(circle, #a78bfa, transparent);
-    }
-    
-    /* Mobile menu styles neon */
+    /* Mobile menu styles */
     @media (max-width: 768px) {
         .hamburger {
             display: flex;
@@ -621,7 +674,7 @@ const additionalCSS = `
             position: fixed;
             top: 70px;
             right: -100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: white;
             width: 80%;
             height: calc(100vh - 70px);
             flex-direction: column;
@@ -629,9 +682,7 @@ const additionalCSS = `
             justify-content: flex-start;
             padding-top: 2rem;
             transition: right 0.3s ease;
-            box-shadow: -5px 0 15px rgba(139, 92, 246, 0.3);
-            backdrop-filter: blur(10px);
-            border-left: 1px solid #8b5cf6;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
         }
         
         .nav-menu.active {
@@ -640,8 +691,6 @@ const additionalCSS = `
         
         .hamburger.active span:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
-            background: #8b5cf6;
-            box-shadow: 0 0 5px #8b5cf6;
         }
         
         .hamburger.active span:nth-child(2) {
@@ -650,18 +699,16 @@ const additionalCSS = `
         
         .hamburger.active span:nth-child(3) {
             transform: rotate(-45deg) translate(7px, -6px);
-            background: #8b5cf6;
-            box-shadow: 0 0 5px #8b5cf6;
         }
         
-        .neon-notification {
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .github-notification {
             right: 10px;
             left: 10px;
             max-width: none;
-        }
-        
-        .neon-cursor {
-            display: none;
         }
     }
 
@@ -677,8 +724,8 @@ const additionalCSS = `
         }
     }
 
-    /* Efectos de carga neon */
-    .assignment-card, .feature, .info-item {
+    /* Efectos de carga escalonados */
+    .assignment-card, .feature, .data-item, .detail-item, .resource-link {
         opacity: 0;
         animation: fadeInUp 0.6s ease-out forwards;
     }
@@ -691,16 +738,11 @@ const additionalCSS = `
     .feature:nth-child(2) { animation-delay: 0.2s; }
     .feature:nth-child(3) { animation-delay: 0.3s; }
     
-    /* Partículas de fondo */
-    .particles-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 1;
-    }
+    .data-item:nth-child(1) { animation-delay: 0.1s; }
+    .data-item:nth-child(2) { animation-delay: 0.2s; }
+    .data-item:nth-child(3) { animation-delay: 0.3s; }
+    .data-item:nth-child(4) { animation-delay: 0.4s; }
+    .data-item:nth-child(5) { animation-delay: 0.5s; }
 `;
 
 // Inject additional CSS
@@ -708,4 +750,4 @@ const additionalStyle = document.createElement('style');
 additionalStyle.textContent = additionalCSS;
 document.head.appendChild(additionalStyle);
 
-console.log('JavaScript estilo neon cargado exitosamente');
+console.log('JavaScript profesional cargado exitosamente');

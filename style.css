@@ -1,154 +1,485 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Programación Numérica</title>
-  <!-- Vinculación a tu CSS (en la misma carpeta) -->
-  <link rel="stylesheet" href="style.css">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Fira+Code&display=swap" rel="stylesheet">
-  <!-- Iconos (FontAwesome) -->
-  <script src="https://kit.fontawesome.com/a2e0f1f0d5.js" crossorigin="anonymous"></script>
-</head>
-<body>
-  <!-- Header -->
-  <header class="header">
-    <nav class="navbar container">
-      <div class="logo">
-        <i class="fas fa-code"></i>
-        <div class="logo-text">
-          <span class="logo-title">Programación Numérica</span>
-          <span class="logo-subtitle">Proyecto 2025</span>
-        </div>
-      </div>
-      <ul class="nav-menu">
-        <li><a href="#inicio" class="nav-link">Inicio</a></li>
-        <li><a href="#introduccion" class="nav-link">Introducción</a></li>
-        <li><a href="#unidades" class="nav-link">Unidades</a></li>
-        <li><a href="#trabajos" class="nav-link">Trabajos</a></li>
-      </ul>
-      <div class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </nav>
-  </header>
+/* Variables CSS - Estilo Neon Morado sobre Negro */
+:root {
+    --neon-primary: #8b5cf6;
+    --neon-secondary: #a78bfa;
+    --neon-accent: #c4b5fd;
+    --neon-glow: #8b5cf6;
+    --bg-dark: #000000;
+    --bg-darker: #0a0a0a;
+    --bg-card: #111111;
+    --text-neon: #ffffff;
+    --text-glow: #8b5cf6;
+    --text-muted: #a1a1aa;
+    --border-neon: #8b5cf6;
+    --shadow-glow: 0 0 10px var(--neon-glow), 0 0 20px var(--neon-glow), 0 0 30px var(--neon-glow);
+    --shadow-soft: 0 0 20px rgba(139, 92, 246, 0.3);
+    --gradient-neon: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+}
 
-  <!-- Hero -->
-  <section id="inicio" class="hero">
-    <div class="container">
-      <div>
-        <h1 class="hero-title">
-          <span class="title-line">Bienvenido a</span>
-          <span class="title-line highlight">Programación Numérica</span>
-        </h1>
-        <div class="hero-student">
-          <div class="student-avatar large">H</div>
-          <div class="student-info">
-            <p class="student-name">Henrry Quispe</p>
-            <p class="student-title">Estudiante de Ingeniería Estadística e Informática</p>
-          </div>
-        </div>
-        <p class="hero-text">Proyecto académico con enfoque en métodos numéricos, optimización y simulación.</p>
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-number">05</span>
-            <span class="stat-label">Unidades</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number">20+</span>
-            <span class="stat-label">Ejercicios</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number">100%</span>
-            <span class="stat-label">Dedicación</span>
-          </div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="code-preview">
-          <div class="code-header">
-            <div class="code-dots">
-              <span></span><span></span><span></span>
-            </div>
-            <span>ejemplo.py</span>
-          </div>
-          <div class="code-content">
-            <p class="code-line"><span class="keyword">def</span> <span class="function">fibonacci</span>(n):</p>
-            <p class="code-line">&nbsp;&nbsp;<span class="keyword">if</span> n &lt;= 1: <span class="keyword">return</span> n</p>
-            <p class="code-line">&nbsp;&nbsp;<span class="keyword">return</span> fibonacci(n-1) + fibonacci(n-2)</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+/* Reset y Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-  <!-- Introducción -->
-  <section id="introduccion" class="section bg-light">
-    <div class="container intro-content">
-      <div class="intro-text">
-        <h3>Introducción</h3>
-        <p>Este curso explora las bases de los métodos numéricos aplicados en la ingeniería y la estadística. Se busca el desarrollo de habilidades analíticas y de programación.</p>
-        <div class="intro-features">
-          <div class="feature">
-            <i class="fas fa-check-circle"></i>
-            <div>
-              <h4>Resolución de problemas</h4>
-              <p>Aprenderás a resolver problemas matemáticos complejos con algoritmos eficientes.</p>
-            </div>
-          </div>
-          <div class="feature">
-            <i class="fas fa-code"></i>
-            <div>
-              <h4>Implementación en código</h4>
-              <p>Se aplicarán los métodos mediante lenguajes de programación.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="intro-objectives">
-        <h3>Objetivos</h3>
-        <ul class="objectives-list">
-          <li><i class="fas fa-check"></i><span>Comprender los fundamentos teóricos de los métodos numéricos.</span></li>
-          <li><i class="fas fa-check"></i><span>Aplicar algoritmos a problemas prácticos.</span></li>
-          <li><i class="fas fa-check"></i><span>Usar software y lenguajes de programación en la resolución de ejercicios.</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
+html {
+    scroll-behavior: smooth;
+}
 
-  <!-- Trabajos -->
-  <section id="trabajos" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Trabajos y Ejercicios</h2>
-        <div class="section-divider"></div>
-        <p class="section-subtitle">Aquí encontrarás las prácticas y proyectos realizados en el curso.</p>
-      </div>
-      <div class="assignments-grid">
-        <div class="assignment-card">
-          <h3>Método de Bisección</h3>
-          <p>Implementación paso a paso del método de bisección en Python.</p>
-        </div>
-        <div class="assignment-card">
-          <h3>Método de Newton-Raphson</h3>
-          <p>Resolución de ecuaciones no lineales con iteración numérica.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-neon);
+    background: var(--bg-dark);
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 20%);
+}
 
-  <!-- Footer -->
-  <footer class="section bg-light">
-    <div class="container" style="text-align:center;">
-      <p>&copy; 2025 - Proyecto Programación Numérica | Henrry Quispe</p>
-    </div>
-  </footer>
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-  <!-- JS (en la misma carpeta) -->
-  <script src="script.js"></script>
-</body>
-</html>
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-neon);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
 
+.header.scrolled {
+    background: rgba(0, 0, 0, 0.95);
+    box-shadow: var(--shadow-soft);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--text-neon);
+    line-height: 1.2;
+    text-shadow: 0 0 10px var(--text-glow);
+}
+
+.logo-subtitle {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.logo i {
+    font-size: 1.8rem;
+    color: var(--neon-primary);
+    filter: drop-shadow(0 0 5px var(--neon-glow));
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-neon);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    text-shadow: 0 0 5px var(--text-glow);
+}
+
+.nav-link:hover {
+    color: var(--neon-primary);
+    text-shadow: 0 0 10px var(--neon-glow);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-neon);
+    transition: width 0.3s ease;
+    box-shadow: var(--shadow-soft);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--text-neon);
+    margin: 3px 0;
+    transition: 0.3s;
+    box-shadow: 0 0 5px var(--neon-glow);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: var(--bg-darker);
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+.hero .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 20px var(--text-glow);
+}
+
+.title-line {
+    display: block;
+}
+
+.highlight {
+    background: var(--gradient-neon);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px var(--neon-glow);
+}
+
+.hero-student {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-neon);
+    box-shadow: var(--shadow-soft);
+}
+
+.student-avatar {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-neon);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow-soft);
+}
+
+.student-avatar.large {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+}
+
+.neon-avatar {
+    background: var(--gradient-neon);
+    box-shadow: var(--shadow-glow);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px var(--neon-glow), 0 0 20px var(--neon-glow);
+    }
+    to {
+        box-shadow: 0 0 15px var(--neon-glow), 0 0 30px var(--neon-glow), 0 0 40px var(--neon-glow);
+    }
+}
+
+.student-info {
+    flex: 1;
+}
+
+.student-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-neon);
+    margin-bottom: 0.25rem;
+    text-shadow: 0 0 10px var(--text-glow);
+}
+
+.student-title {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: var(--neon-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--neon-glow);
+}
+
+.hero-text {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--neon-primary);
+    margin-bottom: 0.25rem;
+    text-shadow: 0 0 10px var(--neon-glow);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.code-preview {
+    background: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-glow);
+    width: 100%;
+    max-width: 500px;
+    border: 1px solid var(--border-neon);
+}
+
+.code-header {
+    background: #1a1a1a;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border-neon);
+}
+
+.code-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.code-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ef4444;
+    box-shadow: 0 0 5px #ef4444;
+}
+
+.code-dots span:nth-child(2) {
+    background: #f59e0b;
+    box-shadow: 0 0 5px #f59e0b;
+}
+
+.code-dots span:nth-child(3) {
+    background: #10b981;
+    box-shadow: 0 0 5px #10b981;
+}
+
+.code-header span {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.code-content {
+    padding: 1.5rem;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.code-line {
+    color: var(--text-neon);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px var(--text-glow);
+}
+
+.keyword {
+    color: #f472b6;
+    text-shadow: 0 0 5px #f472b6;
+}
+
+.function {
+    color: #60a5fa;
+    text-shadow: 0 0 5px #60a5fa;
+}
+
+/* Sections */
+.section {
+    padding: 100px 0;
+    position: relative;
+}
+
+.bg-dark {
+    background: var(--bg-darker);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--text-neon);
+    text-shadow: 0 0 20px var(--text-glow);
+}
+
+.section-divider {
+    width: 60px;
+    height: 4px;
+    background: var(--gradient-neon);
+    margin: 0 auto 1.5rem;
+    border-radius: 2px;
+    box-shadow: var(--shadow-soft);
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+/* Introducción */
+.intro-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.intro-text h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-neon);
+    text-shadow: 0 0 10px var(--text-glow);
+}
+
+.intro-text p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.intro-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-neon);
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow);
+}
+
+.feature i {
+    font-size: 1.5rem;
+    color: var(--neon-primary);
+    margin-top: 0.25rem;
+    filter: drop-shadow(0 0 5px var(--neon-glow));
+}
+
+.feature h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-neon);
+    text-shadow: 0 0 5px var(--text-glow);
+}
+
+.feature p {
+    color: var

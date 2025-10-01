@@ -1,165 +1,154 @@
-/* General */
-body {
-  font-family: "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top left, #1d1f33, #0d0f1a);
-  color: #fff;
-  margin: 0;
-  padding: 0;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programación Numérica</title>
+  <!-- Vinculación a tu CSS (en la misma carpeta) -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Iconos (FontAwesome) -->
+  <script src="https://kit.fontawesome.com/a2e0f1f0d5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="navbar container">
+      <div class="logo">
+        <i class="fas fa-code"></i>
+        <div class="logo-text">
+          <span class="logo-title">Programación Numérica</span>
+          <span class="logo-subtitle">Proyecto 2025</span>
+        </div>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="#inicio" class="nav-link">Inicio</a></li>
+        <li><a href="#introduccion" class="nav-link">Introducción</a></li>
+        <li><a href="#unidades" class="nav-link">Unidades</a></li>
+        <li><a href="#trabajos" class="nav-link">Trabajos</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
 
-/* ENCABEZADO */
-.header {
-  padding: 2rem;
-  text-align: left;
-}
-.header h1 {
-  font-size: 2.2rem;
-  color: #a78bfa;
-}
-.header h1 span {
-  color: #8b5cf6;
-}
-.header p {
-  font-size: 1rem;
-  color: #d6d9f5;
-}
-.progress-bar {
-  height: 6px;
-  background: #00c2ff;
-  border-radius: 4px;
-  margin-top: 1rem;
-  width: 70%;
-}
-.stats {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
-}
-.stat {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  padding: 1rem 2rem;
-  text-align: center;
-  flex: 1;
-}
-.stat h2 {
-  font-size: 1.5rem;
-  color: #36f1cd;
-  margin: 0;
-}
-.stat p {
-  font-size: 0.9rem;
-  color: #d6d9f5;
-}
+  <!-- Hero -->
+  <section id="inicio" class="hero">
+    <div class="container">
+      <div>
+        <h1 class="hero-title">
+          <span class="title-line">Bienvenido a</span>
+          <span class="title-line highlight">Programación Numérica</span>
+        </h1>
+        <div class="hero-student">
+          <div class="student-avatar large">H</div>
+          <div class="student-info">
+            <p class="student-name">Henrry Quispe</p>
+            <p class="student-title">Estudiante de Ingeniería Estadística e Informática</p>
+          </div>
+        </div>
+        <p class="hero-text">Proyecto académico con enfoque en métodos numéricos, optimización y simulación.</p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">05</span>
+            <span class="stat-label">Unidades</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">20+</span>
+            <span class="stat-label">Ejercicios</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Dedicación</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="code-preview">
+          <div class="code-header">
+            <div class="code-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <span>ejemplo.py</span>
+          </div>
+          <div class="code-content">
+            <p class="code-line"><span class="keyword">def</span> <span class="function">fibonacci</span>(n):</p>
+            <p class="code-line">&nbsp;&nbsp;<span class="keyword">if</span> n &lt;= 1: <span class="keyword">return</span> n</p>
+            <p class="code-line">&nbsp;&nbsp;<span class="keyword">return</span> fibonacci(n-1) + fibonacci(n-2)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-/* SOBRE EL PORTAFOLIO */
-.sobre {
-  padding: 2rem;
-}
-.sobre h2 {
-  color: #ff4fd8;
-  margin-bottom: 1.5rem;
-}
-.sobre-cards {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-.sobre-card {
-  background: linear-gradient(160deg, #222846, #191d34);
-  border-radius: 16px;
-  padding: 1.5rem;
-  flex: 1;
-  min-width: 250px;
-}
+  <!-- Introducción -->
+  <section id="introduccion" class="section bg-light">
+    <div class="container intro-content">
+      <div class="intro-text">
+        <h3>Introducción</h3>
+        <p>Este curso explora las bases de los métodos numéricos aplicados en la ingeniería y la estadística. Se busca el desarrollo de habilidades analíticas y de programación.</p>
+        <div class="intro-features">
+          <div class="feature">
+            <i class="fas fa-check-circle"></i>
+            <div>
+              <h4>Resolución de problemas</h4>
+              <p>Aprenderás a resolver problemas matemáticos complejos con algoritmos eficientes.</p>
+            </div>
+          </div>
+          <div class="feature">
+            <i class="fas fa-code"></i>
+            <div>
+              <h4>Implementación en código</h4>
+              <p>Se aplicarán los métodos mediante lenguajes de programación.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="intro-objectives">
+        <h3>Objetivos</h3>
+        <ul class="objectives-list">
+          <li><i class="fas fa-check"></i><span>Comprender los fundamentos teóricos de los métodos numéricos.</span></li>
+          <li><i class="fas fa-check"></i><span>Aplicar algoritmos a problemas prácticos.</span></li>
+          <li><i class="fas fa-check"></i><span>Usar software y lenguajes de programación en la resolución de ejercicios.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-/* ACTIVIDADES */
-.actividades {
-  padding: 2rem;
-}
-.actividades h2 {
-  font-size: 2rem;
-  color: #ff4fd8;
-  margin-bottom: 1.5rem;
-}
-.cards {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.card {
-  background: linear-gradient(160deg, #222846, #191d34);
-  border-radius: 16px;
-  padding: 1.5rem;
-  width: 300px;
-  position: relative;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  transition: transform 0.2s ease-in-out;
-}
-.card:hover {
-  transform: translateY(-8px);
-}
-.card.destacado {
-  border: 2px solid #ff4fd8;
-}
-.badge {
-  background: #00c2ff;
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: bold;
-  padding: 0.3rem 0.7rem;
-  border-radius: 12px;
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-}
-.card h3 {
-  color: #a78bfa;
-  font-size: 1.2rem;
-  margin-top: 2rem;
-}
-.card p {
-  font-size: 0.9rem;
-  line-height: 1.4rem;
-  margin: 1rem 0;
-  color: #d6d9f5;
-}
-.tags {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-}
-.tags span {
-  background: rgba(255,255,255,0.1);
-  padding: 0.3rem 0.7rem;
-  border-radius: 10px;
-  font-size: 0.8rem;
-  color: #fff;
-}
-.buttons {
-  display: flex;
-  gap: 0.7rem;
-  flex-wrap: wrap;
-}
-.btn {
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  font-size: 0.85rem;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.2s;
-}
-.btn.repo {
-  background: linear-gradient(90deg, #6366f1, #a78bfa);
-  color: white;
-}
-.btn.informe {
-  background: linear-gradient(90deg, #00c2ff, #36f1cd);
-  color: black;
-}
-.btn:hover {
-  opacity: 0.85;
-}
+  <!-- Trabajos -->
+  <section id="trabajos" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Trabajos y Ejercicios</h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">Aquí encontrarás las prácticas y proyectos realizados en el curso.</p>
+      </div>
+      <div class="assignments-grid">
+        <div class="assignment-card">
+          <h3>Método de Bisección</h3>
+          <p>Implementación paso a paso del método de bisección en Python.</p>
+        </div>
+        <div class="assignment-card">
+          <h3>Método de Newton-Raphson</h3>
+          <p>Resolución de ecuaciones no lineales con iteración numérica.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="section bg-light">
+    <div class="container" style="text-align:center;">
+      <p>&copy; 2025 - Proyecto Programación Numérica | Henrry Quispe</p>
+    </div>
+  </footer>
+
+  <!-- JS (en la misma carpeta) -->
+  <script src="script.js"></script>
+</body>
+</html>
+

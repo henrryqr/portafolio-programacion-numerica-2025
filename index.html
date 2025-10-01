@@ -165,7 +165,7 @@
     </section>
 
     <!-- Unidad 1 -->
-    <section id="unidad1" class="section bg-dark">
+    <section id="unidad1" class="section bg-light">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Unidad 1</h2>
@@ -326,7 +326,7 @@
     </section>
 
     <!-- Información Personal -->
-    <section id="informacion" class="section bg-dark">
+    <section id="informacion" class="section bg-light">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Información Académica</h2>
@@ -334,134 +334,177 @@
                 <p class="section-subtitle">Datos del estudiante y información del curso</p>
             </div>
 
-            <div class="info-container">
-                <div class="personal-info">
+            <div class="info-grid">
+                <!-- Columna 1: Información Personal -->
+                <div class="info-column">
                     <div class="info-card">
                         <div class="info-header">
-                            <div class="student-avatar large neon-avatar">
+                            <div class="student-avatar large">
                                 <i class="fas fa-user-graduate"></i>
                             </div>
                             <div class="student-details">
                                 <h3>Henry Higinio Quispe Ramos</h3>
-                                <p class="student-role">Estudiante de Ingeniería</p>
+                                <p class="student-role">Estudiante Universitario</p>
                             </div>
                         </div>
                         
-                        <div class="info-content">
-                            <div class="info-item">
-                                <div class="info-icon neon-icon">
-                                    <i class="fas fa-id-card"></i>
+                        <div class="personal-data">
+                            <div class="data-group">
+                                <h4>Información Personal</h4>
+                                <div class="data-item">
+                                    <div class="data-icon">
+                                        <i class="fas fa-id-card"></i>
+                                    </div>
+                                    <div class="data-content">
+                                        <label>Código de Estudiante</label>
+                                        <span>194926</span>
+                                    </div>
                                 </div>
-                                <div class="info-text">
-                                    <strong>Código de Estudiante</strong>
-                                    <span>194926</span>
-                                </div>
-                            </div>
-                            
-                            <div class="info-item">
-                                <div class="info-icon neon-icon">
-                                    <i class="fas fa-university"></i>
-                                </div>
-                                <div class="info-text">
-                                    <strong>Universidad</strong>
-                                    <span>Universidad Nacional del Altiplano Puno</span>
-                                </div>
-                            </div>
-                            
-                            <div class="info-item">
-                                <div class="info-icon neon-icon">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <div class="info-text">
-                                    <strong>Facultad</strong>
-                                    <span>Ingeniería Estadística e Informática</span>
+                                <div class="data-item">
+                                    <div class="data-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="data-content">
+                                        <label>Email Institucional</label>
+                                        <span>hequisper@est.unap.edu.pe</span>
+                                    </div>
                                 </div>
                             </div>
                             
-                            <div class="info-item">
-                                <div class="info-icon neon-icon">
-                                    <i class="fas fa-book"></i>
+                            <div class="data-group">
+                                <h4>Información Académica</h4>
+                                <div class="data-item">
+                                    <div class="data-icon">
+                                        <i class="fas fa-university"></i>
+                                    </div>
+                                    <div class="data-content">
+                                        <label>Universidad</label>
+                                        <span>Universidad Nacional del Altiplano Puno</span>
+                                    </div>
                                 </div>
-                                <div class="info-text">
-                                    <strong>Carrera</strong>
-                                    <span>Ingeniería Estadística e Informática</span>
+                                <div class="data-item">
+                                    <div class="data-icon">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                    <div class="data-content">
+                                        <label>Facultad</label>
+                                        <span>Ingeniería Estadística e Informática</span>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="info-item">
-                                <div class="info-icon neon-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="info-text">
-                                    <strong>Email Institucional</strong>
-                                    <span>hequisper@est.unap.edu.pe</span>
+                                <div class="data-item">
+                                    <div class="data-icon">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                    <div class="data-content">
+                                        <label>Carrera</label>
+                                        <span>Ingeniería Estadística e Informática</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="course-info">
-                    <div class="course-card">
-                        <h3>Información del Curso</h3>
-                        <div class="course-details">
-                            <div class="detail-item">
-                                <div class="detail-icon neon-icon">
-                                    <i class="fas fa-chalkboard-teacher"></i>
+                <!-- Columna 2: Información del Curso y Enlaces -->
+                <div class="info-column">
+                    <div class="course-info">
+                        <div class="info-card">
+                            <h3 class="info-card-title">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                                Información del Curso
+                            </h3>
+                            <div class="course-details">
+                                <div class="detail-item">
+                                    <div class="detail-icon">
+                                        <i class="fas fa-user-tie"></i>
+                                    </div>
+                                    <div class="detail-content">
+                                        <label>Docente</label>
+                                        <span>Ing. Fred Torres Cruz</span>
+                                    </div>
                                 </div>
-                                <div class="detail-text">
-                                    <strong>Docente</strong>
-                                    <span>Ing. Fred Torres Cruz</span>
+                                <div class="detail-item">
+                                    <div class="detail-icon">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                    <div class="detail-content">
+                                        <label>Curso</label>
+                                        <span>Programación Numérica</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-icon neon-icon">
-                                    <i class="fas fa-book"></i>
+                                <div class="detail-item">
+                                    <div class="detail-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="detail-content">
+                                        <label>Ciclo Académico</label>
+                                        <span>2023 - II</span>
+                                    </div>
                                 </div>
-                                <div class="detail-text">
-                                    <strong>Curso</strong>
-                                    <span>Programación Numérica</span>
-                                </div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-icon neon-icon">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div class="detail-text">
-                                    <strong>Ciclo Académico</strong>
-                                    <span>2023 - II</span>
-                                </div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-icon neon-icon">
-                                    <i class="fas fa-code"></i>
-                                </div>
-                                <div class="detail-text">
-                                    <strong>Lenguaje</strong>
-                                    <span>Python</span>
+                                <div class="detail-item">
+                                    <div class="detail-icon">
+                                        <i class="fas fa-code"></i>
+                                    </div>
+                                    <div class="detail-content">
+                                        <label>Lenguaje Principal</label>
+                                        <span>Python</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="links-card">
-                        <h3>Enlaces de Interés</h3>
-                        <div class="links-list">
-                            <a href="#" class="link-item neon-link" target="_blank">
-                                <i class="fab fa-github"></i>
-                                <span>Repositorio Principal</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                            <a href="#" class="link-item neon-link" target="_blank">
-                                <i class="fas fa-book-open"></i>
-                                <span>Material del Curso</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                            <a href="#" class="link-item neon-link" target="_blank">
-                                <i class="fas fa-code"></i>
-                                <span>Ejemplos de Código</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
+                        <div class="links-section">
+                            <div class="info-card">
+                                <h3 class="info-card-title">
+                                    <i class="fas fa-link"></i>
+                                    Enlaces de Interés
+                                </h3>
+                                <div class="links-grid">
+                                    <a href="#" class="resource-link" target="_blank">
+                                        <div class="link-icon">
+                                            <i class="fab fa-github"></i>
+                                        </div>
+                                        <div class="link-content">
+                                            <span class="link-title">Repositorio Principal</span>
+                                            <span class="link-desc">Código fuente en GitHub</span>
+                                        </div>
+                                        <i class="fas fa-arrow-right link-arrow"></i>
+                                    </a>
+                                    
+                                    <a href="#" class="resource-link" target="_blank">
+                                        <div class="link-icon">
+                                            <i class="fas fa-book-open"></i>
+                                        </div>
+                                        <div class="link-content">
+                                            <span class="link-title">Material del Curso</span>
+                                            <span class="link-desc">Apuntes y recursos</span>
+                                        </div>
+                                        <i class="fas fa-arrow-right link-arrow"></i>
+                                    </a>
+                                    
+                                    <a href="#" class="resource-link" target="_blank">
+                                        <div class="link-icon">
+                                            <i class="fas fa-code"></i>
+                                        </div>
+                                        <div class="link-content">
+                                            <span class="link-title">Ejemplos de Código</span>
+                                            <span class="link-desc">Implementaciones prácticas</span>
+                                        </div>
+                                        <i class="fas fa-arrow-right link-arrow"></i>
+                                    </a>
+                                    
+                                    <a href="#" class="resource-link" target="_blank">
+                                        <div class="link-icon">
+                                            <i class="fas fa-project-diagram"></i>
+                                        </div>
+                                        <div class="link-content">
+                                            <span class="link-title">Proyectos</span>
+                                            <span class="link-desc">Trabajos y aplicaciones</span>
+                                        </div>
+                                        <i class="fas fa-arrow-right link-arrow"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -515,9 +558,6 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <script src="script.js"></script>
-</body>
-</html>
     <script src="script.js"></script>
 </body>
 </html>

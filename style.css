@@ -1,19 +1,24 @@
-/* Variables CSS - Estilo Neon Morado sobre Negro */
+/* Variables CSS - Paleta Profesional Azul y Gris */
 :root {
-    --neon-primary: #8b5cf6;
-    --neon-secondary: #a78bfa;
-    --neon-accent: #c4b5fd;
-    --neon-glow: #8b5cf6;
-    --bg-dark: #000000;
-    --bg-darker: #0a0a0a;
-    --bg-card: #111111;
-    --text-neon: #ffffff;
-    --text-glow: #8b5cf6;
-    --text-muted: #a1a1aa;
-    --border-neon: #8b5cf6;
-    --shadow-glow: 0 0 10px var(--neon-glow), 0 0 20px var(--neon-glow), 0 0 30px var(--neon-glow);
-    --shadow-soft: 0 0 20px rgba(139, 92, 246, 0.3);
-    --gradient-neon: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #3b82f6;
+    --secondary: #64748b;
+    --secondary-dark: #475569;
+    --accent: #06b6d4;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --bg: #ffffff;
+    --bg-light: #f8fafc;
+    --bg-dark: #0f172a;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --border: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --gradient: linear-gradient(135deg, var(--primary), var(--accent));
+    --gradient-light: linear-gradient(135deg, var(--primary-light), var(--accent));
 }
 
 /* Reset y Base */
@@ -30,12 +35,9 @@ html {
 body {
     font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: var(--text-neon);
-    background: var(--bg-dark);
+    color: var(--text);
+    background: var(--bg);
     overflow-x: hidden;
-    background-image: 
-        radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 20%);
 }
 
 .container {
@@ -49,16 +51,16 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-neon);
+    border-bottom: 1px solid var(--border);
     z-index: 1000;
     transition: all 0.3s ease;
 }
 
 .header.scrolled {
-    background: rgba(0, 0, 0, 0.95);
-    box-shadow: var(--shadow-soft);
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: var(--shadow);
 }
 
 .navbar {
@@ -82,21 +84,19 @@ body {
 .logo-title {
     font-weight: 700;
     font-size: 1.25rem;
-    color: var(--text-neon);
+    color: var(--primary);
     line-height: 1.2;
-    text-shadow: 0 0 10px var(--text-glow);
 }
 
 .logo-subtitle {
     font-size: 0.875rem;
-    color: var(--text-muted);
+    color: var(--text-light);
     font-weight: 500;
 }
 
 .logo i {
     font-size: 1.8rem;
-    color: var(--neon-primary);
-    filter: drop-shadow(0 0 5px var(--neon-glow));
+    color: var(--primary);
 }
 
 .nav-menu {
@@ -107,16 +107,14 @@ body {
 
 .nav-link {
     text-decoration: none;
-    color: var(--text-neon);
+    color: var(--text);
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
     position: relative;
-    text-shadow: 0 0 5px var(--text-glow);
 }
 
 .nav-link:hover {
-    color: var(--neon-primary);
-    text-shadow: 0 0 10px var(--neon-glow);
+    color: var(--primary);
 }
 
 .nav-link::after {
@@ -126,9 +124,8 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--gradient-neon);
+    background: var(--gradient);
     transition: width 0.3s ease;
-    box-shadow: var(--shadow-soft);
 }
 
 .nav-link:hover::after {
@@ -144,10 +141,9 @@ body {
 .hamburger span {
     width: 25px;
     height: 3px;
-    background: var(--text-neon);
+    background: var(--text);
     margin: 3px 0;
     transition: 0.3s;
-    box-shadow: 0 0 5px var(--neon-glow);
 }
 
 /* Hero Section */
@@ -156,26 +152,8 @@ body {
     display: flex;
     align-items: center;
     position: relative;
-    background: var(--bg-darker);
+    background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg) 100%);
     overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-    animation: pulse 4s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
 }
 
 .hero .container {
@@ -183,8 +161,6 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
-    position: relative;
-    z-index: 2;
 }
 
 .hero-title {
@@ -192,7 +168,6 @@ body {
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 1.5rem;
-    text-shadow: 0 0 20px var(--text-glow);
 }
 
 .title-line {
@@ -200,11 +175,10 @@ body {
 }
 
 .highlight {
-    background: var(--gradient-neon);
+    background: var(--gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 0 0 30px var(--neon-glow);
 }
 
 .hero-student {
@@ -213,44 +187,28 @@ body {
     gap: 1rem;
     margin-bottom: 1.5rem;
     padding: 1rem;
-    background: var(--bg-card);
+    background: white;
     border-radius: 12px;
-    border: 1px solid var(--border-neon);
-    box-shadow: var(--shadow-soft);
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--primary);
 }
 
 .student-avatar {
     width: 60px;
     height: 60px;
-    background: var(--gradient-neon);
+    background: var(--gradient);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-size: 1.5rem;
-    box-shadow: var(--shadow-soft);
 }
 
 .student-avatar.large {
     width: 80px;
     height: 80px;
     font-size: 2rem;
-}
-
-.neon-avatar {
-    background: var(--gradient-neon);
-    box-shadow: var(--shadow-glow);
-    animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-    from {
-        box-shadow: 0 0 10px var(--neon-glow), 0 0 20px var(--neon-glow);
-    }
-    to {
-        box-shadow: 0 0 15px var(--neon-glow), 0 0 30px var(--neon-glow), 0 0 40px var(--neon-glow);
-    }
 }
 
 .student-info {
@@ -260,28 +218,26 @@ body {
 .student-name {
     font-size: 1.2rem;
     font-weight: 700;
-    color: var(--text-neon);
+    color: var(--text);
     margin-bottom: 0.25rem;
-    text-shadow: 0 0 10px var(--text-glow);
 }
 
 .student-title {
     font-size: 0.9rem;
-    color: var(--text-muted);
+    color: var(--text-light);
     font-weight: 500;
 }
 
 .hero-subtitle {
     font-size: 1.3rem;
-    color: var(--neon-primary);
+    color: var(--primary);
     font-weight: 600;
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px var(--neon-glow);
 }
 
 .hero-text {
     font-size: 1.1rem;
-    color: var(--text-muted);
+    color: var(--text-light);
     margin-bottom: 2rem;
 }
 
@@ -298,14 +254,13 @@ body {
     display: block;
     font-size: 2rem;
     font-weight: 800;
-    color: var(--neon-primary);
+    color: var(--primary);
     margin-bottom: 0.25rem;
-    text-shadow: 0 0 10px var(--neon-glow);
 }
 
 .stat-label {
     font-size: 0.9rem;
-    color: var(--text-muted);
+    color: var(--text-light);
     font-weight: 500;
 }
 
@@ -316,22 +271,21 @@ body {
 }
 
 .code-preview {
-    background: var(--bg-card);
+    background: var(--bg-dark);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: var(--shadow-glow);
+    box-shadow: var(--shadow-lg);
     width: 100%;
     max-width: 500px;
-    border: 1px solid var(--border-neon);
 }
 
 .code-header {
-    background: #1a1a1a;
+    background: #1e293b;
     padding: 1rem 1.5rem;
     display: flex;
     align-items: center;
     gap: 1rem;
-    border-bottom: 1px solid var(--border-neon);
+    border-bottom: 1px solid #334155;
 }
 
 .code-dots {
@@ -344,21 +298,18 @@ body {
     height: 12px;
     border-radius: 50%;
     background: #ef4444;
-    box-shadow: 0 0 5px #ef4444;
 }
 
 .code-dots span:nth-child(2) {
     background: #f59e0b;
-    box-shadow: 0 0 5px #f59e0b;
 }
 
 .code-dots span:nth-child(3) {
     background: #10b981;
-    box-shadow: 0 0 5px #10b981;
 }
 
 .code-header span {
-    color: var(--text-muted);
+    color: #cbd5e1;
     font-weight: 500;
 }
 
@@ -370,19 +321,16 @@ body {
 }
 
 .code-line {
-    color: var(--text-neon);
+    color: #e2e8f0;
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 5px var(--text-glow);
 }
 
 .keyword {
     color: #f472b6;
-    text-shadow: 0 0 5px #f472b6;
 }
 
 .function {
     color: #60a5fa;
-    text-shadow: 0 0 5px #60a5fa;
 }
 
 /* Sections */
@@ -391,8 +339,8 @@ body {
     position: relative;
 }
 
-.bg-dark {
-    background: var(--bg-darker);
+.bg-light {
+    background: var(--bg-light);
 }
 
 .section-header {
@@ -404,22 +352,20 @@ body {
     font-size: 2.5rem;
     font-weight: 800;
     margin-bottom: 1rem;
-    color: var(--text-neon);
-    text-shadow: 0 0 20px var(--text-glow);
+    color: var(--text);
 }
 
 .section-divider {
     width: 60px;
     height: 4px;
-    background: var(--gradient-neon);
+    background: var(--gradient);
     margin: 0 auto 1.5rem;
     border-radius: 2px;
-    box-shadow: var(--shadow-soft);
 }
 
 .section-subtitle {
     font-size: 1.2rem;
-    color: var(--text-muted);
+    color: var(--text-light);
 }
 
 /* Introducción */
@@ -433,14 +379,13 @@ body {
 .intro-text h3 {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
-    color: var(--text-neon);
-    text-shadow: 0 0 10px var(--text-glow);
+    color: var(--text);
 }
 
 .intro-text p {
     font-size: 1.1rem;
     line-height: 1.7;
-    color: var(--text-muted);
+    color: var(--text-light);
     margin-bottom: 2rem;
 }
 
@@ -455,31 +400,112 @@ body {
     align-items: flex-start;
     gap: 1rem;
     padding: 1.5rem;
-    background: var(--bg-card);
+    background: white;
     border-radius: 12px;
-    border: 1px solid var(--border-neon);
-    box-shadow: var(--shadow-soft);
-    transition: all 0.3s ease;
-}
-
-.feature:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-glow);
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--primary);
 }
 
 .feature i {
     font-size: 1.5rem;
-    color: var(--neon-primary);
+    color: var(--primary);
     margin-top: 0.25rem;
-    filter: drop-shadow(0 0 5px var(--neon-glow));
 }
 
 .feature h4 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    color: var(--text-neon);
-    text-shadow: 0 0 5px var(--text-glow);
+    color: var(--text);
 }
 
 .feature p {
-    color: var
+    color: var(--text-light);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.intro-objectives h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+}
+
+.objectives-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.objectives-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.objectives-list i {
+    color: var(--success);
+    margin-top: 0.25rem;
+}
+
+.objectives-list span {
+    color: var(--text);
+    line-height: 1.5;
+}
+
+/* Unit Description */
+.unit-description {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+.unit-description p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+/* Assignments */
+.assignments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.assignment-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.assignment-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient);
+    transition: width 0.3s ease;
+}
+
+.assignment-card:hover::before {
+    width: 8px;
+}
+
+.assignment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.assignment-card.featured

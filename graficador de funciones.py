@@ -1,67 +1,58 @@
-def limpiar_expresion(texto):
-    texto = texto.replace(" ", "")
-    texto = texto.replace("^", "**")
-    texto = texto.replace("-x", "-1*x").replace("+x", "+1*x")
-    if texto[:1] == "x":
-        texto = "1*" + texto
-    texto = texto.replace("x", "*x").replace("**x", "*x")
-    return texto
+def extraer_coeficientes(expr):
+    expr = expr.replace(" ", "").lower()
+    if 'x' not in expr:
+        raise ValueError("La expresión debe contener 'x'")
 
-def valor_funcion(expresion, x):
-    try:
-        return eval(expresion, {"x": x, "__builtins__": {}})
-    except:
-        return None
+    x_index = expr.find('x')
+    m = expr[:x_index]
+    b = expr[x_index+1:] if x_index+1 < len(expr) else '0'
 
-def dibujar(funcA, funcB, rango_x=(-15, 15), rango_y=(-10, 10)):
-    x_min, x_max = rango_x
-    y_min, y_max = rango_y
-    print("\n=== GRÁFICO EN CONSOLA ===\n")
+    if m == '':
+        m = '1'
+    elif m == '+':
+        m = '1'
+    elif m == '-':
+        m = '-1'
 
-    for y in range(y_max, y_min - 1, -1):
-        fila = ""
-        for x in range(x_min, x_max + 1):
-            yA = valor_funcion(funcA, x)
-            yB = valor_funcion(funcB, x)
+    if b == '':
+        b = '0'
+    elif b.startswith('+') or b.startswith('-'):
+        pass
+    else:
+        b = '+' + b
 
-            toca_A = yA is not None and abs(yA - y) < 0.5
-            toca_B = yB is not None and abs(yB - y) < 0.5
+    return float(m), float(b)
 
-            if toca_A and toca_B:
-                fila += "#"
-            elif toca_A:
-                fila += "*"
-            elif toca_B:
-                fila += "o"
-            elif x == 0 and y == 0:
-                fila += "+"
+def pedir_funciones_texto():
+    funciones = []
+    for i in range(2):
+        texto = input(f"Ingrese la función {i+1} (ej: 2x+3 o -x-4): ")
+        try:
+            funciones.append(extraer_coeficientes(texto))
+        except Exception as e:
+            print(f"Error: {e}")
+            return pedir_funciones_texto()
+    return funciones
+
+def graficar_dos_funciones(funciones):
+    print("\nGráfico (1 = función 1, 2 = función 2):\n")
+    for y in range(10, -11, -1):
+        linea = ""
+        for x in range(-20, 21):
+            simbolo = ' '
+            if x == 0 and y == 0:
+                simbolo = '+'
             elif x == 0:
-                fila += "|"
+                simbolo = '|'
             elif y == 0:
-                fila += "-"
-            else:
-                fila += " "
-        print(fila)
-
-    print("\n[ LEYENDA ]")
-    print(" * = Función 1")
-    print(" o = Función 2")
-    print(" # = Intersección")
-    print(" | = Eje Y")
-    print(" - = Eje X")
-    print(" + = Origen (0,0)\n")
-
-def ejecutar():
-    print("PROGRAMA GRAFICADOR ")
-    print("==========================\n")
-
-    f1 = input("Función 1 (ejemplo: 2x+1): ")
-    f2 = input("Función 2 (ejemplo: -x+3): ")
-
-    f1 = limpiar_expresion(f1)
-    f2 = limpiar_expresion(f2)
-
-    dibujar(f1, f2)
+                simbolo = '-'
+            for idx, (m, b) in enumerate(funciones):
+                yf = m * x + b
+                if int(round(yf)) == y:
+                    simbolo = str(idx+1)
+            linea += simbolo
+        print(linea)
 
 if __name__ == "__main__":
-    ejecutar()
+    funciones = pedir_funciones_texto()
+    graficar_dos_funciones(funciones)

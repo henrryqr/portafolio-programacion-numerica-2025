@@ -1,8 +1,582 @@
-<!DOCTYPE html>
+<!-- Modales para cada tarea -->
+    
+    <!-- Modal Tarea 1 -->
+    <div id="modal-tarea1" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Tarea 1: Reconocimiento de Funciones</h3>
+                <button class="modal-close" onclick="closeModal('tarea1')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">
+                            <i class="fab fa-python"></i> reconocimiento_funciones.py
+                        </span>
+                        <button class="copy-btn" onclick="copyCode('code-tarea1')">
+                            <i class="fas fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <div class="code-block-content" id="code-tarea1">
+                        <pre>import tkinter as tk
+
+def analizar():
+    funcion = entrada.get()
+
+    if funcion == "":
+        resultado["text"] = "Por favor escribe una función"
+        return
+    letras = ""
+    cant_letras = 0
+    operaciones = 0
+    for i in range(len(funcion)):
+        c = funcion[i]
+        if c.isalpha() and c not in letras:
+            letras += c
+            cant_letras += 1
+        if c in "+-*/^":
+            operaciones += 1
+        if i < len(funcion) - 1:
+            sig = funcion[i + 1]
+            if (c.isdigit() and sig.isalpha()) or (c.isalpha() and sig.isalpha()):
+                operaciones += 1
+
+    resultado["text"] = "Variables: " + letras + "\\nCantidad: " + str(cant_letras) + "\\nOperaciones: " + str(operaciones)
+
+ventana = tk.Tk()
+ventana.title("Analizador")
+ventana.geometry("300x250")
+tk.Label(ventana, text="Ingresa una función:").pack()
+entrada = tk.Entry(ventana)
+entrada.pack(pady=5)
+boton = tk.Button(ventana, text="Analizar", command=analizar)
+boton.pack(pady=5)
+resultado = tk.Label(ventana, text="", bg="lightgray", width=30, height=6, anchor="w", justify="left")
+resultado.pack(pady=10)
+ventana.mainloop()</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tarea 2 -->
+    <div id="modal-tarea2" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Tarea 2: Graficador de Funciones</h3>
+                <button class="modal-close" onclick="closeModal('tarea2')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">
+                            <i class="fab fa-python"></i> graficador_funciones.py
+                        </span>
+                        <button class="copy-btn" onclick="copyCode('code-tarea2')">
+                            <i class="fas fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <div class="code-block-content" id="code-tarea2">
+                        <pre>def extraer_coeficientes(expr):
+    expr = expr.replace(" ", "").lower()
+    if 'x' not in expr:
+        raise ValueError("La expresión debe contener 'x'")
+
+    x_index = expr.find('x')
+    m = expr[:x_index]
+    b = expr[x_index+1:] if x_index+1 < len(expr) else '0'
+
+    if m == '':
+        m = '1'
+    elif m == '+':
+        m = '1'
+    elif m == '-':
+        m = '-1'
+
+    if b == '':
+        b = '0'
+    elif b.startswith('+') or b.startswith('-'):
+        pass
+    else:
+        b = '+' + b
+
+    return float(m), float(b)
+
+def pedir_funciones_texto():
+    funciones = []
+    for i in range(2):
+        texto = input(f"Ingrese la función {i+1} (ej: 2x+3 o -x-4): ")
+        try:
+            funciones.append(extraer_coeficientes(texto))
+        except Exception as e:
+            print(f"Error: {e}")
+            return pedir_funciones_texto()
+    return funciones
+
+def graficar_dos_funciones(funciones):
+    print("\\nGráfico (1 = función 1, 2 = función 2):\\n")
+    for y in range(10, -11, -1):
+        linea = ""
+        for x in range(-20, 21):
+            simbolo = ' '
+            if x == 0 and y == 0:
+                simbolo = '+'
+            elif x == 0:
+                simbolo = '|'
+            elif y == 0:
+                simbolo = '-'
+            for idx, (m, b) in enumerate(funciones):
+                yf = m * x + b
+                if int(round(yf)) == y:
+                    simbolo = str(idx+1)
+            linea += simbolo
+        print(linea)
+
+if __name__ == "__main__":
+    funciones = pedir_funciones_texto()
+    graficar_dos_funciones(funciones)</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tarea 3 -->
+    <div id="modal-tarea3" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Tarea 3: Graficador con Restricciones</h3>
+                <button class="modal-close" onclick="closeModal('tarea3')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">
+                            <i class="fab fa-python"></i> graficador_restricciones.py
+                        </span>
+                        <button class="copy-btn" onclick="copyCode('code-tarea3')">
+                            <i class="fas fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <div class="code-block-content" id="code-tarea3">
+                        <pre>def extraer_coeficientes(expr):
+    expr = expr.replace(" ", "").lower()
+    if 'x' not in expr:
+        return 0.0, float(expr)
+    if expr.startswith('x'): expr = '1' + expr
+    if expr.startswith('-x'): expr = '-1' + expr
+    x_index = expr.find('x')
+    m_str = expr[:x_index]
+    b_str = expr[x_index+1:] if x_index+1 < len(expr) else '0'
+    m = float(m_str)
+    b = float(b_str) if b_str else 0.0
+    return m, b
+
+def pedir_funciones_texto():
+    funciones = []
+    print("\\nAhora, ingrese dos funciones en formato y = mx + b (ej: -2x+5)")
+    for i in range(2):
+        while True:
+            texto = input(f"Ingrese la función de línea {i+1}: ")
+            try:
+                funciones.append(extraer_coeficientes(texto))
+                break
+            except Exception as e:
+                print(f"Error en el formato: {e}. Inténtelo de nuevo.")
+    return funciones
+
+def pedir_restricciones_texto():
+    restricciones = []
+    print("Ingrese las restricciones del problema (ej: x+y<=15, x>=5).")
+    print("Deje la línea en blanco y presione Enter para terminar.")
+    i = 1
+    while True:
+        texto = input(f"Restricción {i}: ")
+        if not texto:
+            break
+        restricciones.append(texto.replace(" ", "").lower())
+        i += 1
+    return restricciones
+
+def cumple_restricciones(x, y, restricciones):
+    for r in restricciones:
+        try:
+            if not eval(r):
+                return False
+        except NameError:
+            print(f"Error: La restricción '{r}' no es válida.")
+            return False
+    return True
+
+def graficar_combinado(funciones, restricciones):
+    print("\\n" + "="*60)
+    print("Visualización Combinada: Funciones (1, 2) y Región Factible (*)")
+    print("="*60 + "\\n")
+    for y_coord in range(15, -3, -1):
+        linea = f"{y_coord:3d}| "
+        for x_coord in range(-2, 21):
+            x = x_coord
+            y = y_coord
+            simbolo = ' '
+            if cumple_restricciones(x, y, restricciones):
+                simbolo = '*'
+            for idx, (m, b) in enumerate(funciones):
+                if abs((m * x + b) - y) < 0.5:
+                    simbolo = str(idx + 1)
+            if x == 0 and y == 0:
+                simbolo = '+'
+            elif x == 0 and simbolo == ' ':
+                simbolo = '|'
+            elif y == 0 and simbolo == ' ':
+                simbolo = '-'
+            linea += simbolo
+        print(linea)
+    print("   +" + "-" * 23)
+
+if __name__ == "__main__":
+    lista_de_restricciones = pedir_restricciones_texto()
+    
+    if not lista_de_restricciones:
+        print("No se ingresaron restricciones. Saliendo del programa.")
+    else:
+        funciones_usuario = pedir_funciones_texto()
+        graficar_combinado(funciones_usuario, lista_de_restricciones)</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tarea 4 -->
+    <div id="modal-tarea4" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Tarea 4: Método Newton-Raphson</h3>
+                <button class="modal-close" onclick="closeModal('tarea4')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">
+                            <i class="fab fa-python"></i> raphson.py
+                        </span>
+                        <button class="copy-btn" onclick="copyCode('code-tarea4')">
+                            <i class="fas fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <div class="code-block-content" id="code-tarea4">
+                        <pre>class Raphson:
+    def __init__(self, f_str, x0, tol, n):
+        self.f_str, self.x, self.tol, self.n = f_str, x0, tol, n
+    
+    def f(self, x): 
+        return eval(self.f_str)
+    
+    def df(self, x):
+        h = 1e-6
+        return (self.f(x+h) - self.f(x-h)) / (2*h)
+    
+    def calcular(self):
+        for i in range(self.n):
+            fx, dfx = self.f(self.x), self.df(self.x)
+            if dfx == 0: 
+                break
+            x1 = self.x - fx/dfx
+            print(f"Iter {i+1}: x={x1:.6f}, f(x)={fx:.6f}")
+            if abs(x1 - self.x) < self.tol:
+                print(f"\\nRaíz ≈ {x1:.6f}")
+                return
+            self.x = x1
+        print("\\nNo converge")
+
+f = input("f(x): ")
+x0 = float(input("x0: "))
+tol = float(input("tolerancia: "))
+n = int(input("iteraciones: "))
+Raphson(f, x0, tol, n).calcular()</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tarea 5 -->
+    <div id="modal-tarea5" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Tarea 5: Método Punto Fijo</h3>
+                <button class="modal-close" onclick="closeModal('tarea5')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">
+                            <i class="fab fa-python"></i> punto_fijo.py
+                        </span>
+                        <button class="copy-btn" onclick="copyCode('code-tarea5')">
+                            <i class="fas fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <div class="code-block-content" id="code-tarea5">
+                        <pre>import math
+
+print("METODO DE PUNTO FIJO")
+print("====================")
+
+funcion_str = input("Escribe g(x): ")
+
+x0 = float(input("Valor inicial x0: "))
+
+tolerancia = float(input("Tolerancia: "))
+
+max_iter = int(input("Maximo iteraciones: "))
+
+print("\\nCalculando...")
+print("Iter\\tx_nuevo\\t\\tDiferencia")
+
+x_actual = x0
+encontrado = False
+
+for i in range(1, max_iter + 1):
+    x_siguiente = eval(funcion_str, {"math": math, "x": x_actual})
+    
+    dif = abs(x_siguiente - x_actual)
+    
+    print(f"{i}\\t{x_siguiente:.6f}\\t{dif:.6f}")
+    
+    if dif < tolerancia:
+        print(f"\\nRaiz encontrada: {x_siguiente:.8f}")
+        print(f"Iteraciones: {i}")
+        encontrado = True
+        break
+    
+    x_actual = x_siguiente
+
+if not encontrado:
+    print(f"\\nNo converge en {max_iter} iteraciones")
+    print(f"Ultimo valor: {x_siguiente:.8f}")
+
+print("Terminado")</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tarea 6 -->
+    <div id="modal-tarea6" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Tarea 6: Método de la Secante</h3>
+                <button class="modal-close" onclick="closeModal('tarea6')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-block-title">
+                            <i class="fab fa-python"></i> metodo_secante.py
+                        </span>
+                        <button class="copy-btn" onclick="copyCode('code-tarea6')">
+                            <i class="fas fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <div class="code-block-content" id="code-tarea6">
+                        <pre># metodo de la secante
+# sirve para encontrar una raiz de una funcion f(x)=0
+# no necesita derivadas
+import math   # por si usamos sin, cos, exp, etc
+
+def metodo_secante():
+    print("=== metodo de la secante ===")
+    expr = input("ingresa la funcion f(x): ")   # ej: x**3 - x - 2
+    x0 = float(input("valor inicial x0: "))
+    x1 = float(input("valor inicial x1: "))
+    tol = float(input("tolerancia (ej 0.0001): "))
+    max_iter = int(input("numero maximo de iteraciones: "))
+    
+    # definimos la funcion f(x)
+    def f(x):
+        return eval(expr)
+    
+    print("\\niter\\t x0\\t\\t x1\\t\\t x2\\t\\t f(x2)")
+    print("-------------------------------------------------------")
+    
+    for i in range(max_iter):
+        f0 = f(x0)
+        f1 = f(x1)
+        
+        # evitar division por cero
+        if f1 - f0 == 0:
+            print("error: division por cero")
+            break
+        
+        # formula del metodo de la secante
+        x2 = x1 - f1 * (x1 - x0) / (f1 - f0)
+        f2 = f(x2)
+        
+        # mostramos cada paso
+        print(f"{i}\\t {x0:.6f}\\t {x1:.6f}\\t {x2:.6f}\\t {f2:.6f}")
+        
+        # comprobamos si ya esta dentro de la tolerancia
+        if abs(x2 - x1) < tol:
+            print("\\nraiz aproximada encontrada:", round(x2,6))
+            break
+        
+        # actualizamos valores
+        x0 = x1
+        x1 = x2
+    else:
+        print("\\nno se encontro la raiz dentro del limite de iteraciones")
+
+# llamamos a la funcion principal
+metodo_secante()</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Funciones para abrir y cerrar modales
+        function openModal(tareaId) {
+            const modal = document.getElementById('modal-' + tareaId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(tareaId) {
+            const modal = document.getElementById('modal-' + tareaId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Cerrar modal al hacer clic fuera del contenido
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const activeModal = document.querySelector('.modal.active');
+                if (activeModal) {
+                    activeModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+
+        // Función para copiar código
+        function copyCode(codeId) {
+            const codeBlock = document.getElementById(codeId);
+            const code = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(code).then(function() {
+                const btn = event.target.closest('.copy-btn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+                btn.style.background = '#10b981';
+                
+                setTimeout(function() {
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Error al copiar:', err);
+            });
+        }
+
+        // Código principal
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('.header');
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const scrollTopBtn = document.getElementById('scrollTop');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                if (window.scrollY > 300) {
+                    scrollTopBtn.style.display = 'flex';
+                } else {
+                    scrollTopBtn.style.display = 'none';
+                }
+
+                highlightActiveSection();
+            });
+
+            hamburger?.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        hamburger?.classList.remove('active');
+                        navMenu?.classList.remove('active');
+                        
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            scrollTopBtn?.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            function highlightActiveSection() {
+                const sections = document.querySelectorAll('section[id]');
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portafolio de Programación Numérica - Henrry Higinio Quispe Ramos - UNAP">
     <title>Programación Numérica | Henrry Higinio Quispe Ramos - UNAP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -25,7 +599,6 @@
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             --gradient: linear-gradient(135deg, var(--primary), var(--accent));
-            --gradient-light: linear-gradient(135deg, var(--primary-light), var(--accent));
         }
 
         * {
@@ -118,7 +691,8 @@
             position: relative;
         }
 
-        .nav-link:hover {
+        .nav-link:hover,
+        .nav-link.active {
             color: var(--primary);
         }
 
@@ -133,7 +707,8 @@
             transition: width 0.3s ease;
         }
 
-        .nav-link:hover::after {
+        .nav-link:hover::after,
+        .nav-link.active::after {
             width: 100%;
         }
 
@@ -141,6 +716,7 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            z-index: 1001;
         }
 
         .hamburger span {
@@ -149,6 +725,7 @@
             background: var(--text);
             margin: 3px 0;
             transition: 0.3s;
+            border-radius: 2px;
         }
 
         .hero {
@@ -158,6 +735,7 @@
             position: relative;
             background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg) 100%);
             overflow: hidden;
+            padding-top: 80px;
         }
 
         .hero .container {
@@ -207,6 +785,7 @@
             justify-content: center;
             color: white;
             font-size: 1.5rem;
+            flex-shrink: 0;
         }
 
         .student-avatar.large {
@@ -248,6 +827,7 @@
         .hero-stats {
             display: flex;
             gap: 2rem;
+            flex-wrap: wrap;
         }
 
         .stat {
@@ -312,7 +892,7 @@
             background: #10b981;
         }
 
-        .code-header span {
+        .code-header > span {
             color: #cbd5e1;
             font-weight: 500;
         }
@@ -320,13 +900,15 @@
         .code-content {
             padding: 1.5rem;
             font-family: 'Fira Code', 'Courier New', monospace;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             line-height: 1.5;
+            overflow-x: auto;
         }
 
         .code-line {
             color: #e2e8f0;
             margin-bottom: 0.5rem;
+            white-space: pre;
         }
 
         .keyword {
@@ -406,6 +988,11 @@
             border-radius: 12px;
             box-shadow: var(--shadow);
             border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateX(5px);
         }
 
         .feature i {
@@ -447,6 +1034,11 @@
             background: white;
             border-radius: 8px;
             box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .objectives-list li:hover {
+            transform: translateX(5px);
         }
 
         .objectives-list i {
@@ -461,7 +1053,7 @@
 
         .unit-description {
             text-align: center;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto 3rem;
         }
 
@@ -473,7 +1065,7 @@
 
         .assignments-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
 
@@ -486,6 +1078,8 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .assignment-card::before {
@@ -518,6 +1112,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .assignment-badge {
@@ -532,6 +1128,7 @@
         .assignment-badge.featured {
             background: var(--success);
         }
+
         .assignment-badge.proximamente {
             background: var(--secondary);
         }
@@ -555,6 +1152,7 @@
             color: var(--text-light);
             line-height: 1.6;
             margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
 
         .assignment-tags {
@@ -574,9 +1172,16 @@
             border: 1px solid var(--border);
         }
 
+        .assignment-buttons {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
         .btn-assignment {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             background: var(--primary);
             color: white;
@@ -585,11 +1190,151 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
+            flex: 1;
+            min-width: 140px;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-assignment:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
+        }
+
+        .btn-assignment.btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-assignment.btn-secondary:hover {
+            background: var(--secondary-dark);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--bg-light);
+            color: var(--text);
+        }
+
+        .modal-body {
+            padding: 2rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .code-block {
+            background: var(--bg-dark);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .code-block-header {
+            background: #1e293b;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #334155;
+        }
+
+        .code-block-title {
+            color: #cbd5e1;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .code-block-content {
+            padding: 1.5rem;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+            overflow-x: auto;
+        }
+
+        .code-block-content pre {
+            margin: 0;
+            white-space: pre;
         }
 
         .info-grid {
@@ -645,6 +1390,11 @@
             background: var(--bg-light);
             border-radius: 8px;
             margin-bottom: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        .data-item:hover {
+            transform: translateX(5px);
         }
 
         .data-icon {
@@ -656,6 +1406,11 @@
             align-items: center;
             justify-content: center;
             color: white;
+            flex-shrink: 0;
+        }
+
+        .data-content {
+            flex: 1;
         }
 
         .data-content label {
@@ -669,6 +1424,7 @@
             display: block;
             color: var(--text);
             font-weight: 600;
+            word-break: break-word;
         }
 
         .info-card-title {
@@ -693,6 +1449,11 @@
             padding: 1rem;
             background: var(--bg-light);
             border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .detail-item:hover {
+            transform: translateX(5px);
         }
 
         .detail-icon {
@@ -704,6 +1465,11 @@
             align-items: center;
             justify-content: center;
             color: white;
+            flex-shrink: 0;
+        }
+
+        .detail-content {
+            flex: 1;
         }
 
         .detail-content label {
@@ -740,6 +1506,7 @@
         .resource-link:hover {
             background: white;
             transform: translateX(5px);
+            box-shadow: var(--shadow);
         }
 
         .link-icon {
@@ -751,6 +1518,7 @@
             align-items: center;
             justify-content: center;
             color: white;
+            flex-shrink: 0;
         }
 
         .link-content {
@@ -836,12 +1604,23 @@
             font-size: 1.25rem;
             box-shadow: var(--shadow-lg);
             transition: all 0.3s ease;
-            z-index: 1000;
+            z-index: 999;
         }
 
         .scroll-top:hover {
             background: var(--primary-dark);
             transform: translateY(-3px);
+        }
+
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .intro-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -855,13 +1634,15 @@
                 right: -100%;
                 background: white;
                 width: 80%;
+                max-width: 300px;
                 height: calc(100vh - 70px);
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
                 justify-content: flex-start;
-                padding-top: 2rem;
+                padding: 2rem;
                 transition: right 0.3s ease;
                 box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                gap: 1rem;
             }
 
             .nav-menu.active {
@@ -883,6 +1664,7 @@
             .hero .container {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 2rem;
             }
 
             .hero-title {
@@ -893,8 +1675,16 @@
                 justify-content: center;
             }
 
-            .intro-content {
-                grid-template-columns: 1fr;
+            .code-preview {
+                max-width: 100%;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
             }
 
             .info-grid {
@@ -903,91 +1693,70 @@
 
             .footer-content {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
             .assignments-grid {
                 grid-template-columns: 1fr;
             }
+
+            .assignment-buttons {
+                flex-direction: column;
+            }
+
+            .btn-assignment {
+                width: 100%;
+            }
+
+            .logo-subtitle {
+                display: none;
+            }
+
+            .modal-content {
+                max-height: 95vh;
+            }
+
+            .modal-body {
+                padding: 1rem;
+            }
         }
 
-        @keyframes fadeInUp {
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .section-header {
+                margin-bottom: 2rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+        }
+
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-
-        @keyframes typeWrite {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .animate-in {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .code-line {
-            animation: typeWrite 0.5s both;
-        }
-
-        .assignment-card, .feature, .data-item, .detail-item, .resource-link {
-            opacity: 0;
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        .assignment-card:nth-child(1) { animation-delay: 0.1s; }
-        .assignment-card:nth-child(2) { animation-delay: 0.2s; }
-        .assignment-card:nth-child(3) { animation-delay: 0.3s; }
-
-        .github-notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            border-left: 4px solid var(--primary);
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-            z-index: 3000;
-            max-width: 300px;
-        }
-
-        .github-notification.show {
-            transform: translateX(0);
-        }
-
-        .notification-content {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .notification-content i {
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        .notification-close {
-            background: none;
-            border: none;
-            font-size: 1.25rem;
-            cursor: pointer;
-            color: var(--text-light);
-            position: absolute;
-            top: 0.5rem;
-            right: 0.75rem;
         }
     </style>
 </head>
@@ -1065,14 +1834,14 @@
                     </div>
                     <div class="code-content">
                         <div class="code-line"><span class="keyword">def</span> <span class="function">biseccion</span>(f, a, b, tol):</div>
-                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(100):</div>
-                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c = (a + b) / 2</div>
-                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> <span class="function">abs</span>(f(c)) < tol:</div>
-                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> c</div>
-                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">elif</span> f(a)*f(c) < 0:</div>
-                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b = c</div>
-                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">else</span>:</div>
-                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a = c</div>
+                        <div class="code-line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(100):</div>
+                        <div class="code-line">        c = (a + b) / 2</div>
+                        <div class="code-line">        <span class="keyword">if</span> <span class="function">abs</span>(f(c)) < tol:</div>
+                        <div class="code-line">            <span class="keyword">return</span> c</div>
+                        <div class="code-line">        <span class="keyword">elif</span> f(a)*f(c) < 0:</div>
+                        <div class="code-line">            b = c</div>
+                        <div class="code-line">        <span class="keyword">else</span>:</div>
+                        <div class="code-line">            a = c</div>
                     </div>
                 </div>
             </div>
@@ -1090,7 +1859,7 @@
             <div class="intro-content">
                 <div class="intro-text">
                     <h3>¿Qué es la Programación Numérica?</h3>
-                    <p>La programación numérica es una rama de las matemáticas y la computación que se enfoca en el desarrollo y implementación de algoritmos para resolver problemas matemáticos complejos mediante aproximaciones numéricas.</p>
+                    <p>La programación numérica es una rama de las matemáticas y la computación que se enfoca en el desarrollo e implementación de algoritmos para resolver problemas matemáticos complejos mediante aproximaciones numéricas.</p>
                     
                     <div class="intro-features">
                         <div class="feature">
@@ -1168,16 +1937,18 @@
                         </div>
                     </div>
                     <h3 class="assignment-title">Reconocimiento de Funciones</h3>
-                    <p class="assignment-description"> Este programa permite reconocer e interpretar funciones matemáticas</p>
+                    <p class="assignment-description">Este programa permite reconocer e interpretar funciones matemáticas utilizando Python con interfaz gráfica Tkinter.</p>
                     <div class="assignment-tags">
                         <span class="tag">Python</span>
-                        <span class="tag">Raíces</span>
-                        <span class="tag">Iterativo</span>
+                        <span class="tag">Tkinter</span>
+                        <span class="tag">Análisis</span>
                     </div>
-                    <a href="https://github.com/henrryqr/portafolio-programacion-numerica-2025/blob/main/reconocimiento%20de%20funciones.py" class="btn-assignment" target="_blank">
-                        <span>Ver en GitHub</span>
-                        <i class="fab fa-github"></i>
-                    </a>
+                    <div class="assignment-buttons">
+                        <button class="btn-assignment" onclick="openModal('tarea1')">
+                            <i class="fas fa-code"></i>
+                            <span>Ver Código</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="assignment-card">
@@ -1189,16 +1960,18 @@
                         </div>
                     </div>
                     <h3 class="assignment-title">Graficador de Funciones</h3>
-                    <p class="assignment-description">programa que permite representar visualmente una función matemática a partir de su expresión.</p>
+                    <p class="assignment-description">Programa que permite representar visualmente funciones lineales en la terminal de forma ASCII.</p>
                     <div class="assignment-tags">
                         <span class="tag">Python</span>
-                        <span class="tag">Derivadas</span>
-                        <span class="tag">Convergencia</span>
+                        <span class="tag">Visualización</span>
+                        <span class="tag">ASCII</span>
                     </div>
-                    <a href="https://github.com/henrryqr/portafolio-programacion-numerica-2025/blob/main/graficador%20de%20funciones.py" class="btn-assignment" target="_blank">
-                        <span>Ver en GitHub</span>
-                        <i class="fab fa-github"></i>
-                    </a>
+                    <div class="assignment-buttons">
+                        <button class="btn-assignment" onclick="openModal('tarea2')">
+                            <i class="fas fa-code"></i>
+                            <span>Ver Código</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="assignment-card">
@@ -1209,17 +1982,23 @@
                             2025
                         </div>
                     </div>
-                    <h3 class="assignment-title">Método Newthon Rapshon</h3>
-                    <p class="assignment-description">procedimiento numérico iterativo utilizado para encontrar raíces o ceros de una función.</p>
+                    <h3 class="assignment-title">Graficador con Restricciones</h3>
+                    <p class="assignment-description">Implementación de un graficador de funciones con restricciones para análisis de regiones factibles.</p>
                     <div class="assignment-tags">
                         <span class="tag">Python</span>
-                        <span class="tag">Aproximación</span>
-                        <span class="tag">Eficiencia</span>
+                        <span class="tag">Restricciones</span>
+                        <span class="tag">Optimización</span>
                     </div>
-                    <a href="https://github.com/henrryqr/portafolio-programacion-numerica-2025/blob/main/raphson.py" class="btn-assignment" target="_blank">
-                        <span>Ver en GitHub</span>
-                        <i class="fab fa-github"></i>
-                    </a>
+                    <div class="assignment-buttons">
+                        <button class="btn-assignment" onclick="openModal('tarea3')">
+                            <i class="fas fa-code"></i>
+                            <span>Ver Código</span>
+                        </button>
+                        <a href="Restriciones.H.pdf" class="btn-assignment btn-secondary" target="_blank">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>Ver PDF</span>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="assignment-card">
@@ -1230,21 +2009,18 @@
                             2025
                         </div>
                     </div>
-                    <h3 class="assignment-title">Restricciones</h3>
-                    <p class="assignment-description">Descripción de la tarea pendiente de añadir.</p>
+                    <h3 class="assignment-title">Método Newton-Raphson</h3>
+                    <p class="assignment-description">Procedimiento numérico iterativo utilizado para encontrar raíces o ceros de una función de manera eficiente.</p>
                     <div class="assignment-tags">
-                        <span class="tag">Pendiente</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Newton-Raphson</span>
+                        <span class="tag">Iterativo</span>
                     </div>
-                    <div style="display: flex; gap: 10px;">
-                        <a href="https://github.com/henrryqr/portafolio-programacion-numerica-2025/blob/main/graficadorrestricciones.py
-" class="btn-assignment" target="_blank">
-                            <span>Ver en GitHub</span>
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="Restriciones.H.pdf" target="_blank" class="btn-assignment">
-                            <span>Ver PDF</span>
-                            <i class="fas fa-file-pdf"></i>
-                        </a>
+                    <div class="assignment-buttons">
+                        <button class="btn-assignment" onclick="openModal('tarea4')">
+                            <i class="fas fa-code"></i>
+                            <span>Ver Código</span>
+                        </button>
                     </div>
                 </div>
 
@@ -1256,15 +2032,19 @@
                             2025
                         </div>
                     </div>
-                    <h3 class="assignment-title">Metodo Punto Fijo</h3>
-                    <p class="assignment-description">Descripción de la tarea pendiente de añadir.</p>
+                    <h3 class="assignment-title">Método Punto Fijo</h3>
+                    <p class="assignment-description">Implementación del método iterativo de punto fijo para encontrar soluciones de ecuaciones no lineales.</p>
                     <div class="assignment-tags">
-                        <span class="tag">Pendiente</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Punto Fijo</span>
+                        <span class="tag">Convergencia</span>
                     </div>
-                    <a href="https://github.com/henrryqr/portafolio-programacion-numerica-2025/blob/main/punto%20fijo.py" class="btn-assignment" target="_blank">
-                        <span>Ver en GitHub</span>
-                        <i class="fab fa-github"></i>
-                    </a>
+                    <div class="assignment-buttons">
+                        <button class="btn-assignment" onclick="openModal('tarea5')">
+                            <i class="fas fa-code"></i>
+                            <span>Ver Código</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="assignment-card">
@@ -1275,15 +2055,40 @@
                             2025
                         </div>
                     </div>
-                    <h3 class="assignment-title">Tarea 6</h3>
-                    <p class="assignment-description">Descripción de la tarea pendiente de añadir.</p>
+                    <h3 class="assignment-title">Método de la Secante</h3>
+                    <p class="assignment-description">Método iterativo para encontrar raíces de funciones sin necesidad de calcular derivadas.</p>
+                    <div class="assignment-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Secante</span>
+                        <span class="tag">Iterativo</span>
+                    </div>
+                    <div class="assignment-buttons">
+                        <button class="btn-assignment" onclick="openModal('tarea6')">
+                            <i class="fas fa-code"></i>
+                            <span>Ver Código</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="assignment-card">
+                    <div class="assignment-header">
+                        <div class="assignment-badge proximamente">Tarea 7</div>
+                        <div class="assignment-date">
+                            <i class="far fa-calendar"></i>
+                            2025
+                        </div>
+                    </div>
+                    <h3 class="assignment-title">Próximamente</h3>
+                    <p class="assignment-description">Contenido disponible próximamente. Método numérico en desarrollo.</p>
                     <div class="assignment-tags">
                         <span class="tag">Pendiente</span>
                     </div>
-                    <a href="#" class="btn-assignment" target="_blank">
-                        <span>Ver en GitHub</span>
-                        <i class="fab fa-github"></i>
-                    </a>
+                    <div class="assignment-buttons">
+                        <button class="btn-assignment" style="opacity: 0.6; pointer-events: none;">
+                            <i class="fas fa-clock"></i>
+                            <span>Próximamente</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1310,15 +2115,17 @@
                             2025
                         </div>
                     </div>
-                    <h3 class="assignment-title">Próximamente</h3>
-                    <p class="assignment-description">Contenido disponible próximamente.</p>
+                    <h3 class="assignment-title">Interpolación Polinomial</h3>
+                    <p class="assignment-description">Contenido disponible próximamente. Métodos de interpolación de Lagrange y Newton.</p>
                     <div class="assignment-tags">
                         <span class="tag">Pendiente</span>
                     </div>
-                    <a href="#" class="btn-assignment" target="_blank">
-                        <span>Ver en GitHub</span>
-                        <i class="fab fa-github"></i>
-                    </a>
+                    <div class="assignment-buttons">
+                        <button class="btn-assignment" style="opacity: 0.6; pointer-events: none;">
+                            <i class="fas fa-clock"></i>
+                            <span>Próximamente</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="assignment-card">
@@ -1329,15 +2136,17 @@
                             2025
                         </div>
                     </div>
-                    <h3 class="assignment-title">Próximamente</h3>
-                    <p class="assignment-description">Contenido disponible próximamente.</p>
+                    <h3 class="assignment-title">Splines Cúbicos</h3>
+                    <p class="assignment-description">Contenido disponible próximamente. Interpolación mediante splines cúbicos.</p>
                     <div class="assignment-tags">
                         <span class="tag">Pendiente</span>
                     </div>
-                    <a href="#" class="btn-assignment" target="_blank">
-                        <span>Ver en GitHub</span>
-                        <i class="fab fa-github"></i>
-                    </a>
+                    <div class="assignment-buttons">
+                        <button class="btn-assignment" style="opacity: 0.6; pointer-events: none;">
+                            <i class="fas fa-clock"></i>
+                            <span>Próximamente</span>
+                        </button>
+                    </div>
                 </div>
                 
                 <div class="assignment-card">
@@ -1348,15 +2157,17 @@
                             2025
                         </div>
                     </div>
-                    <h3 class="assignment-title">Próximamente</h3>
-                    <p class="assignment-description">Contenido disponible próximamente.</p>
+                    <h3 class="assignment-title">Ajuste de Curvas</h3>
+                    <p class="assignment-description">Contenido disponible próximamente. Regresión y mínimos cuadrados.</p>
                     <div class="assignment-tags">
                         <span class="tag">Pendiente</span>
                     </div>
-                    <a href="#" class="btn-assignment" target="_blank">
-                        <span>Ver en GitHub</span>
-                        <i class="fab fa-github"></i>
-                    </a>
+                    <div class="assignment-buttons">
+                        <button class="btn-assignment" style="opacity: 0.6; pointer-events: none;">
+                            <i class="fas fa-clock"></i>
+                            <span>Próximamente</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="assignment-card featured">
@@ -1368,17 +2179,18 @@
                         </div>
                     </div>
                     <h3 class="assignment-title">Sistema Integral de Métodos</h3>
-                    <p class="assignment-description">Contenido disponible próximamente. Aplicación completa con implementación de múltiples métodos numéricos.</p>
+                    <p class="assignment-description">Contenido disponible próximamente. Aplicación completa con implementación de múltiples métodos numéricos con interfaz gráfica.</p>
                     <div class="assignment-tags">
                         <span class="tag">Python</span>
                         <span class="tag">GUI</span>
-                        <span class="tag">Sistema</span>
-                        <span class="tag">Integración</span>
+                        <span class="tag">Sistema Completo</span>
                     </div>
-                    <a href="#" class="btn-assignment" target="_blank">
-                        <span>Ver en GitHub</span>
-                        <i class="fab fa-github"></i>
-                    </a>
+                    <div class="assignment-buttons">
+                        <button class="btn-assignment" style="opacity: 0.6; pointer-events: none;">
+                            <i class="fas fa-clock"></i>
+                            <span>Próximamente</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1389,7 +2201,7 @@
             <div class="section-header">
                 <h2 class="section-title">Información Académica</h2>
                 <div class="section-divider"></div>
-                <p class="section-subtitle">Datos del estudiante y información del curso</p>
+                <p class="section-subtitle">Datos del estudiante y del curso</p>
             </div>
 
             <div class="info-grid">
@@ -1494,7 +2306,7 @@
                                     </div>
                                     <div class="detail-content">
                                         <label>Ciclo Académico</label>
-                                        <span>2025 - II</span>
+                                        <span>2025 - I</span>
                                     </div>
                                 </div>
                                 <div class="detail-item">
@@ -1516,7 +2328,7 @@
                                     Enlaces de Interés
                                 </h3>
                                 <div class="links-grid">
-                                    <a href="#" class="resource-link" target="_blank">
+                                    <a href="https://github.com/henrryqr/portafolio-programacion-numerica-2025" class="resource-link" target="_blank">
                                         <div class="link-icon">
                                             <i class="fab fa-github"></i>
                                         </div>
@@ -1527,35 +2339,13 @@
                                         <i class="fas fa-arrow-right link-arrow"></i>
                                     </a>
                                     
-                                    <a href="#" class="resource-link" target="_blank">
+                                    <a href="https://github.com/henrryqr/portafolio-programacion-numerica-2025" class="resource-link" target="_blank">
                                         <div class="link-icon">
                                             <i class="fas fa-book-open"></i>
                                         </div>
                                         <div class="link-content">
                                             <span class="link-title">Material del Curso</span>
                                             <span class="link-desc">Apuntes y recursos</span>
-                                        </div>
-                                        <i class="fas fa-arrow-right link-arrow"></i>
-                                    </a>
-                                    
-                                    <a href="#" class="resource-link" target="_blank">
-                                        <div class="link-icon">
-                                            <i class="fas fa-code"></i>
-                                        </div>
-                                        <div class="link-content">
-                                            <span class="link-title">Ejemplos de Código</span>
-                                            <span class="link-desc">Implementaciones prácticas</span>
-                                        </div>
-                                        <i class="fas fa-arrow-right link-arrow"></i>
-                                    </a>
-                                    
-                                    <a href="#" class="resource-link" target="_blank">
-                                        <div class="link-icon">
-                                            <i class="fas fa-project-diagram"></i>
-                                        </div>
-                                        <div class="link-content">
-                                            <span class="link-title">Proyectos</span>
-                                            <span class="link-desc">Trabajos y aplicaciones</span>
                                         </div>
                                         <i class="fas fa-arrow-right link-arrow"></i>
                                     </a>
@@ -1579,7 +2369,7 @@
                             <span class="logo-subtitle">Henrry Higinio Quispe Ramos</span>
                         </div>
                     </div>
-                    <p>Universidad Nacional del Altiplano Puno<br>Facultad de Ingeniería Estadística e Informática</p>
+                    <p style="margin-top: 1rem; color: #94a3b8;">Universidad Nacional del Altiplano Puno<br>Facultad de Ingeniería Estadística e Informática</p>
                 </div>
                 
                 <div class="footer-section">
@@ -1608,230 +2398,6 @@
         </div>
     </footer>
 
-    <button id="scrollTop" class="scroll-top">
+    <button id="scrollTop" class="scroll-top" aria-label="Volver arriba">
         <i class="fas fa-chevron-up"></i>
     </button>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Repositorio GitHub - Programación Numérica cargado');
-            
-            const header = document.querySelector('.header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            hamburger?.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
-                    
-                    if (targetSection) {
-                        hamburger?.classList.remove('active');
-                        navMenu?.classList.remove('active');
-                        
-                        window.scrollTo({
-                            top: targetSection.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            const scrollTopBtn = document.getElementById('scrollTop');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    scrollTopBtn.style.display = 'flex';
-                } else {
-                    scrollTopBtn.style.display = 'none';
-                }
-            });
-            
-            scrollTopBtn?.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-
-            const animateOnScroll = () => {
-                const elements = document.querySelectorAll('.assignment-card, .feature, .objectives-list li, .data-item, .detail-item, .resource-link');
-                
-                elements.forEach(element => {
-                    const elementTop = element.getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    
-                    if (elementTop < window.innerHeight - elementVisible) {
-                        element.classList.add('animate-in');
-                    }
-                });
-            };
-            
-            window.addEventListener('scroll', animateOnScroll);
-            animateOnScroll();
-
-            document.querySelectorAll('.assignment-card, .feature, .info-card, .resource-link').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-
-            function animateCounter(element, target, duration = 2000) {
-                let start = 0;
-                const increment = target / (duration / 16);
-                const timer = setInterval(() => {
-                    start += increment;
-                    if (start >= target) {
-                        element.textContent = target;
-                        clearInterval(timer);
-                    } else {
-                        element.textContent = Math.floor(start);
-                    }
-                }, 16);
-            }
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const stats = entry.target.querySelectorAll('.stat-number');
-                        stats.forEach(stat => {
-                            const target = parseInt(stat.textContent);
-                            animateCounter(stat, target);
-                        });
-                        observer.unobserve(entry.target);
-                    }
-                });
-            });
-
-            const heroSection = document.querySelector('.hero');
-            if (heroSection) {
-                observer.observe(heroSection);
-            }
-
-            function typeCodeEffect() {
-                const codeLines = document.querySelectorAll('.code-line');
-                codeLines.forEach((line, index) => {
-                    line.style.animation = `typeWrite 0.5s ${index * 0.2}s both`;
-                });
-            }
-
-            setTimeout(typeCodeEffect, 1000);
-
-            function showGitHubNotification(message) {
-                const notification = document.createElement('div');
-                notification.className = 'github-notification';
-                notification.innerHTML = `
-                    <div class="notification-content">
-                        <i class="fab fa-github"></i>
-                        <span>${message}</span>
-                    </div>
-                    <button class="notification-close">&times;</button>
-                `;
-                
-                document.body.appendChild(notification);
-                
-                setTimeout(() => {
-                    notification.classList.add('show');
-                }, 100);
-                
-                const closeBtn = notification.querySelector('.notification-close');
-                closeBtn.addEventListener('click', () => {
-                    notification.classList.remove('show');
-                    setTimeout(() => {
-                        notification.remove();
-                    }, 300);
-                });
-                
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.classList.remove('show');
-                        setTimeout(() => {
-                            notification.remove();
-                        }, 300);
-                    }
-                }, 4000);
-            }
-
-            document.querySelectorAll('.btn-assignment, .resource-link').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    if (this.getAttribute('href') === '#') {
-                        e.preventDefault();
-                        showGitHubNotification('Repositorio GitHub - Enlace de demostración');
-                    }
-                });
-            });
-
-            function highlightActiveSection() {
-                const sections = document.querySelectorAll('section');
-                const navLinks = document.querySelectorAll('.nav-link');
-                
-                let currentSection = '';
-                
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 100;
-                    const sectionHeight = section.clientHeight;
-                    
-                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                        currentSection = section.getAttribute('id');
-                    }
-                });
-                
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${currentSection}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-            
-            window.addEventListener('scroll', highlightActiveSection);
-
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    document.body.classList.add('loaded');
-                }, 1000);
-            });
-
-            const emailElement = document.querySelector('.data-content span');
-            if (emailElement && emailElement.textContent.includes('@')) {
-                emailElement.style.cursor = 'pointer';
-                emailElement.title = 'Haz clic para copiar el email';
-                
-                emailElement.addEventListener('click', function() {
-                    const email = this.textContent;
-                    navigator.clipboard.writeText(email).then(() => {
-                        showGitHubNotification('Email copiado al portapapeles: ' + email);
-                    });
-                });
-            }
-
-            console.log(`
-            🎓 Repositorio de Programación Numérica
-            👨‍💻 Estudiante: Henrry Higinio Quispe Ramos
-            📚 Código: 194926
-            🏫 UNAP - Facultad de Ingeniería Estadística e Informática
-            📧 Email: hequisper@est.unap.edu.pe
-            👨‍🏫 Docente: Ing. Fred Torres Cruz
-            `);
-        });
-    </script>
-</body>
-</html>

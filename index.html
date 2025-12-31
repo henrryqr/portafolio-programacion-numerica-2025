@@ -2361,6 +2361,35 @@ metodo_secante()</pre>
                 </div>
             </div>
 
+            <!-- Tarea 15 - Práctica Calificada -->
+            <div class="assignment-card">
+                <div class="assignment-header">
+                    <div class="assignment-badge">Tarea 15</div>
+                    <div class="assignment-date">
+                        <i class="far fa-calendar"></i>
+                        2025
+                    </div>
+                </div>
+                <h3 class="assignment-title">Práctica Calificada 1, 2 y 3</h3>
+                <p class="assignment-description">Evaluación integral de métodos numéricos en R - Prácticas 1, 2 y 3 combinadas.</p>
+                <div class="assignment-tags">
+                    <span class="tag r-tag">R</span>
+                    <span class="tag">Evaluación</span>
+                    <span class="tag">Integral</span>
+                    <span class="tag">Prácticas</span>
+                </div>
+                <div class="assignment-buttons">
+                    <a href="practica1_2_3.pdf" class="btn-assignment" target="_blank" download>
+                        <i class="fas fa-download"></i>
+                        <span>Descargar PDF</span>
+                    </a>
+                    <button class="btn-assignment btn-secondary btn-preview" onclick="openPDFViewer('practica1_2_3.pdf', 'Práctica Calificada 1, 2 y 3')">
+                        <i class="fas fa-eye"></i>
+                        <span>Ver PDF</span>
+                    </button>
+                </div>
+            </div>
+
             <!-- LIBRO - Última tarjeta -->
             <div class="assignment-card">
                 <div class="assignment-header">
@@ -2420,6 +2449,221 @@ metodo_secante()</pre>
     </div>
 </div>
 
+<script>
+// Variables globales para control del PDF
+let currentPDFUrl = '';
+let currentPDFTitle = '';
+
+// Función para abrir el visor de PDF
+function openPDFViewer(pdfFile, title) {
+    currentPDFUrl = pdfFile;
+    currentPDFTitle = title;
+    
+    const pdfFrame = document.getElementById('pdf-frame');
+    const pdfTitle = document.getElementById('pdf-title');
+    const directLink = document.getElementById('direct-link');
+    
+    // Configurar el visor
+    pdfTitle.textContent = `Viendo: ${title}`;
+    pdfFrame.src = pdfFile;
+    directLink.href = pdfFile;
+    directLink.onclick = function(e) {
+        e.preventDefault();
+        window.open(pdfFile, '_blank');
+    };
+    
+    // Mostrar el modal
+    document.getElementById('modal-pdf-viewer').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    // Verificar si el PDF existe
+    checkPDFExists(pdfFile);
+}
+
+// Función para verificar si el PDF existe
+function checkPDFExists(pdfUrl) {
+    fetch(pdfUrl, { method: 'HEAD' })
+        .then(response => {
+            if (!response.ok) {
+                showPDFWarning();
+            }
+        })
+        .catch(() => {
+            showPDFWarning();
+        });
+}
+
+// Mostrar advertencia si el PDF no existe
+function showPDFWarning() {
+    const note = document.querySelector('.pdf-note');
+    note.innerHTML = `
+        <span style="color: #dc2626;">
+            <i class="fas fa-exclamation-triangle"></i> 
+            El PDF podría no estar disponible. Si no se carga:
+            <a href="${currentPDFUrl}" target="_blank" style="color: #dc2626; font-weight: bold;">
+                haz clic aquí para intentar abrirlo directamente
+            </a>
+        </span>
+    `;
+}
+
+// Función para descargar el PDF actual
+function downloadCurrentPDF() {
+    if (currentPDFUrl) {
+        const link = document.createElement('a');
+        link.href = currentPDFUrl;
+        link.download = currentPDFUrl;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+}
+
+// Función para abrir PDF en nueva pestaña
+function openPDFInNewTab() {
+    if (currentPDFUrl) {
+        window.open(currentPDFUrl, '_blank');
+    }
+}
+
+// Función para imprimir PDF
+function printCurrentPDF() {
+    const pdfFrame = document.getElementById('pdf-frame');
+    if (pdfFrame.contentWindow) {
+        pdfFrame.contentWindow.print();
+    }
+}
+
+// Función para cerrar el visor de PDF
+function closePDFViewer() {
+    const modal = document.getElementById('modal-pdf-viewer');
+    const pdfFrame = document.getElementById('pdf-frame');
+    
+    // Limpiar el iframe
+    pdfFrame.src = '';
+    currentPDFUrl = '';
+    currentPDFTitle = '';
+    
+    // Restaurar nota
+    const note = document.querySelector('.pdf-note');
+    note.innerHTML = 'Si el PDF no se carga, <a href="#" id="direct-link">haz clic aquí para acceder directamente</a>';
+    
+    // Ocultar modal
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Cerrar modal al hacer clic fuera
+document.getElementById('modal-pdf-viewer').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closePDFViewer();
+    }
+});
+
+// Cerrar con tecla ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closePDFViewer();
+    }
+});
+</script>
+
+<style>
+/* Estilos para etiqueta R */
+.tag.r-tag {
+    background: #276dc1;
+    color: white;
+    border: 1px solid #1a56a8;
+}
+
+.btn-preview {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    border: none;
+}
+
+.btn-preview:hover {
+    background: linear-gradient(135deg, #4338ca, #6d28d9);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+}
+
+/* Modal de PDF */
+.pdf-modal {
+    max-width: 90%;
+    width: 1000px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.pdf-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #f5f5f5;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#pdf-frame {
+    flex: 1;
+    border: none;
+    background: white;
+}
+
+.pdf-controls {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.pdf-btn {
+    padding: 10px 20px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.pdf-btn:hover {
+    background: #4338ca;
+    transform: translateY(-2px);
+}
+
+.pdf-btn i {
+    font-size: 1.1rem;
+}
+
+.pdf-note {
+    text-align: center;
+    padding: 15px;
+    background: #fef3c7;
+    color: #92400e;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.pdf-note a {
+    color: #dc2626;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.pdf-note a:hover {
+    text-decoration: underline;
+}
+</style>
 <script>
 // Variables globales para control del PDF
 let currentPDFUrl = '';
